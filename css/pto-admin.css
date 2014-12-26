@@ -1,0 +1,53 @@
+/**
+    Private Tuition Online - Admin section Style
+*/
+
+.left{ float:left; }
+.right{ float:right; }
+.padding10-20{ padding:10px 20px; }
+
+/* admin main left Nav */
+.dashboard-left img.logo{ width:100px; }
+
+span.tutor-icon{width:27px;height:30px; display:block;margin:0 auto; background:url('../images/profile-icons.png') scroll 0 -523px no-repeat; }
+span.class-icon{width:27px;height:30px; display:block;margin:0 auto; background:url('../images/profile-icons.png') scroll 0 -561px no-repeat; }
+span.lesson-icon{width:27px;height:30px; display:block;margin:0 auto; background:url('../images/profile-icons.png') scroll 0 -594px no-repeat; }
+
+/* Dashbaord Page */
+.pto-bluebox{  width:70px;height:70px;background:#0C8DC4; float:left; margin-right:20px;}
+.pto-pinkbox{  width:70px;height:70px;background:#FF197F; float:left; margin-right:20px;}
+.pto-greenbox{  width:70px;height:70px;background:#1A9B88; float:left; margin-right:20px;}
+.pto-orangebox{  width:70px;height:70px;background:#F9C151; float:left; margin-right:20px;}
+
+/* page title with icon */
+.page-title{ font-size:24px; color:#0C8DC4; line-height:30px; margin-bottom: 24px; width:230px !important; }
+
+/* for tutors / students search panel */
+.searchPan{ margin:0; padding:0; width:100%; background:#f7f7f7; }
+
+table.table-striped{ width:100%; }
+table.table-striped tr th{ line-height:30px; border-bottom:1px solid #ccc;  }
+table.table-striped tr td{ font-size:12px;  }
+table.table-striped tr:hover td{ background:#F7EDB7;  }
+table.table-striped tr td a.glyphicon{ padding:0 5px; text-indent: 5px;  }
+table.table-striped tr th:first-child{ padding-left:20px; }
+table.table-striped tr td:first-child{ padding-left:20px; }
+.glyphicon:before{ padding-right:5px; }
+
+/* For modal box (to preview user info) */
+.modal-dialog{ width:900px; }
+.modal .modal-header button span{ float:right; }
+.modal .modal-header .avatar{ width:120px; height:120px; overflow:hidden; float:left; border-radius:100px; -moz-border-radius:100px; -webkit-border-radius:100px; }
+.modal .modal-header .userInfo{ float:left; width:300px; }
+.modal .modal-header .userInfo .center{ text-align:center; color:#333; }
+.modal .modal-header .userInfo .center .row{ line-height:22px; color:#888; }
+.modal .modal-header .userInfo .center .row:after{ clear:none; }
+.modal .modal-header .userInfo .center .row label{ padding-right:20px; }
+.modal .modal-header .userStat{ float:left; padding-left:20px; margin-top:42px; }
+.modal .modal-header .userStat .column{ float:left; color:#333; padding:10px; }
+.modal .modal-header .userStat .column label{ display:block; text-align:center; font-size:16px; font-weight:normal; }
+.modal .modal-header .userStat .column label.blue{ display:block; text-align:center; font-size:16px; color:#0C8DC4; }
+.modal .modal-header .userStat .column span{ display:block; text-align:center; font-size:28px; color:#0C8DC4;}
+.modal .modal-body table tr td span.glyphicon-ok-circle{ color:#1A9966; font-size:22px; }
+.modal .modal-body table tr td span.glyphicon-ok{ color:#1A9966; font-size:18px; }
+.modal .modal-body table tr td span.glyphicon-time{ color:#888; font-size:16px; }
