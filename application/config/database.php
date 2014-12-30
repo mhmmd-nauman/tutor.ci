@@ -49,9 +49,17 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
+//$db['default']['hostname'] = '97.74.31.8';
+
 $db['default']['username'] = 'root';
+//$db['default']['username'] = 'tuitionbeta';
+
 $db['default']['password'] = '';
+//$db['default']['password'] = 'Dssremote1!';
+
 $db['default']['database'] = 'pto';
+//$db['default']['database'] = 'tuitionbeta';
+
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

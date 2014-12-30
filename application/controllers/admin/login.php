@@ -12,21 +12,21 @@ class Login extends CI_Controller {
 
     function index() {
         if ($this->session->userdata('sess_ci_admin_islogged') == 'true') {
-            redirect("dashboard");
+            redirect("admin/dashboard");
         }
         
         
         
         $data['staff_group'] = "";
         $this->load->helper(array('form'));
-        $this->load->view('layout/admin_header');
+        $this->load->view('layout/admin_header_login');
         $this->load->view('admin/login_page',$data);
         $this->load->view('layout/admin_footer');
     }
 
     public function login() {
         if ($this->session->userdata('sess_ci_admin_islogged') == 'true') {
-            redirect("dashboard");
+            redirect("admin/dashboard");
         } elseif ($this->session->userdata('sess_ci_admin_lock') == 'true') {
             //$this->lockacc();
         } else {
@@ -41,7 +41,7 @@ class Login extends CI_Controller {
     public function dologin() {
 
         $this->load->model("admin");
-        $login['email'] = $this->input->post('login');
+        $login['email'] = $this->input->post('userName');
         $login['pass'] = $this->input->post('password');
         //$login['group_id'] = $_REQUEST['group_id'];
         $login['status'] = '1';
@@ -60,7 +60,7 @@ class Login extends CI_Controller {
                     'sess_ci_admin_islogged' => true
                 ));
 
-                redirect("dashboard");
+                redirect("admin/dashboard");
                // $data['segment'] = $this->uri->segment(1);
             } else {
                 $this->session->set_userdata(array(
@@ -68,7 +68,7 @@ class Login extends CI_Controller {
                     'sess_ci_admin_msg_type' => 'error',
                     'sess_ci_admin_islogged' => false
                 ));
-                redirect("login");
+                redirect("admin/login");
             }
         }
     }
@@ -80,7 +80,7 @@ class Login extends CI_Controller {
             'sess_ci_admin_msg' => " You Have Logged Out successfully... ",
             'sess_ci_admin_msg_type' => 'success'
         ));
-        redirect("login");
+        redirect("admin/login");
 
     }
     public function insert_dummy_admin(){
@@ -229,7 +229,7 @@ class Login extends CI_Controller {
             ));
         }
 
-        redirect('login');
+        redirect('admin/login');
     }
 }
 
