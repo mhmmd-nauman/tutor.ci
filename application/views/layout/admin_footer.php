@@ -5,14 +5,17 @@
 		<script src="<?php echo base_url(); ?>plugins/animo/animo.js"></script>
 		<script>
 					function errorMessage() {
+                                            
 						$('.login-wrap').animo({animation: 'tada'});
 					}
 
 					function Validate(frm) {
-						var userName = $('input#userName').val();
-						var pswd = $('input#userPswd').val();
-
+                                                
+						var userName = $('#userName').val();
+						var pswd = $('#userPswd').val();
+                                                
 						if (userName == "" || pswd == "") {
+                                                    
 							errorMessage();
 							return false;
 						}

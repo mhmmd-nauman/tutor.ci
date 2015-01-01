@@ -9,7 +9,7 @@
                                 $hidden = array(
                                     //'username' => 'Joe', 'member_id' => '234'
                                     );
-                                echo form_open('admin/login/dologin',$attributes,$hidden);?>
+                                echo form_open('admin/login/process_forgot_password',$attributes,$hidden);?>
 				
 
 					<div class="login-c1">
@@ -25,7 +25,20 @@
                                                 'sess_ci_admin_msg_type' => ''
                                             ));
                                             } ?>
-						<div class="h3 center padding20title lblue">Administrator</div>
+                                            <?php
+                                            if ($this->session->userdata('sess_ci_admin_msg_type') == 'success') {
+                                                ?>
+                                            <div class="alert alert-error">
+                                                <strong>Success!</strong> <?php echo $this->session->userdata('sess_ci_admin_msg');?>
+                                            </div>
+                                            <?php 
+                                             $this->session->set_userdata(array(
+                                                'sess_ci_admin_msg' => "",
+                                                'sess_ci_admin_msg_type' => ''
+                                            ));
+                                            } ?>
+						<div class="h3 center padding20title lblue">Enter Email</div>
+                                                <br/><br/>
 						<div class="chpadding50">
                                                     <?php 
                                                     $data = array(
@@ -38,17 +51,7 @@
                                                               );
                                                     echo form_input($data);?>
 							
-							<br/>
-                                                        <?php 
-                                                        $data = array(
-                                                                    'name'        => 'password',
-                                                                    'type'        => 'password',
-                                                                    'value'       => '',
-                                                                    'placeholder' => 'Password',
-                                                                    'id'          => 'userPswd',
-                                                                    'class'       => 'form-control logpadding',
-                                                                  );
-                                                        echo form_input($data);?>
+							
 							
 						</div>
 					</div>
@@ -61,19 +64,13 @@
 									<button class="btn-search4"  type="submit">Submit</button>
                                                                     
 								</div>
-								<div class="alignbottom2">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Remember
-										</label>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 					</div>
 					<div class="login-c3">
 						<div class="left"><a href="../" class="whitelink"><span></span>Go to Website</a></div>
-						<div class="right"><a href="<?php echo base_url(); ?>admin/login/forgot_password" class="whitelink">Lost password?</a></div>
+						
 						<div class="clearfix center"><br><img src="<?php echo base_url(); ?>images/logo-white.png" class="login-img" alt="logo"/></div>
 					</div>	
 

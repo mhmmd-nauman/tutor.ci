@@ -27,11 +27,9 @@ class Login extends CI_Controller {
     public function login() {
         if ($this->session->userdata('sess_ci_admin_islogged') == 'true') {
             redirect("admin/dashboard");
-        } elseif ($this->session->userdata('sess_ci_admin_lock') == 'true') {
-            //$this->lockacc();
         } else {
             $data['title'] = "Login";
-            $this->load->view('layout/admin_header');
+            $this->load->view('layout/admin_header_login');
             $this->load->view('admin/login_page',$data);
             $this->load->view('layout/admin_footer');
         }
@@ -39,11 +37,23 @@ class Login extends CI_Controller {
     }
 
     public function dologin() {
-
+        
+        $this->form_validation->set_rules('userName', 'Username', 'required');
+	$this->form_validation->set_rules('password', 'Password', 'required');
+        
+        if ($this->form_validation->run() == FALSE){
+            $this->session->set_userdata(array(
+                    'sess_ci_admin_msg' => "Invalid Login. ",
+                    'sess_ci_admin_msg_type' => 'error',
+                    'sess_ci_admin_islogged' => false
+                ));
+            redirect("admin/login");
+        }
+        
         $this->load->model("admin");
         $login['email'] = $this->input->post('userName');
         $login['pass'] = $this->input->post('password');
-        //$login['group_id'] = $_REQUEST['group_id'];
+        
         $login['status'] = '1';
         if ($login['status'] == 1) {
             $result = $this->admin->isAdmin($login);
@@ -98,8 +108,20 @@ class Login extends CI_Controller {
         $this->admin->insert_admin($data);
     }
     public function forgot_password() {
+        
+        if ($this->session->userdata('sess_ci_admin_islogged') == 'true') {
+            redirect("admin/dashboard");
+        } else {
+            $data['title'] = "Forgot Password";
+            $this->load->view('layout/admin_header_login');
+            $this->load->view('admin/lostpassword_page',$data);
+            $this->load->view('layout/admin_footer');
+        }
+        
+    }
+    public function process_forgot_password() {
 
-        $email = $this->input->post('femail');
+        $email = $this->input->post('userName');
         $data['title'] = "Login";
         //echo "select * from adminuser where vEmailaddress='".$email."' "; exit;
 
@@ -107,7 +129,7 @@ class Login extends CI_Controller {
         $result = $this->db->get('pto_users')->result_array();
         if (count($result) > 0) {
 			$psw = 'password';
-            $this->db->where('pto_users', $email);
+            $this->db->where('email', $email);
             $this->db->update('pto_users', array('password' => md5($psw)));
             $to = $email;
             $subject = 'Forgot Password';
@@ -209,12 +231,13 @@ class Login extends CI_Controller {
                     'Content-Type: text/html; charset=ISO-8859-1' . "\r\n" .
                     'MIME-Version: 1.0' . "\r\n\r\n";
 
-            if (mail($to, $subject, $message, $headers)) {
+            if (@mail($to, $subject, $message, $headers)) {
                 //echo "yes";exit;
                 $this->session->set_userdata(array(
                     'sess_ci_admin_msg' => "Password Retrieve on your Email-Id Successfully.",
                     'sess_ci_admin_msg_type' => 'success'
                 ));
+                redirect('admin/login/forgot_password');
             } else {
                 //echo "no";exit;
                 $this->session->set_userdata(array(
@@ -224,9 +247,10 @@ class Login extends CI_Controller {
             };
         } else {
             $this->session->set_userdata(array(
-                'sess_ci_admin_msg' => "Email Address not available.",
+                'sess_ci_admin_msg' => "Email Address not found.",
                 'sess_ci_admin_msg_type' => 'error'
             ));
+             redirect('admin/login/forgot_password');
         }
 
         redirect('admin/login');
