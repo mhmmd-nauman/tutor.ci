@@ -16,5 +16,24 @@ Class student_model extends CI_Model
         
         return $query->result();
     }
+    
+    function view_student_record()
+    {
+        $query = $this -> db -> get('pto_students');
+        return $query->result();
+    }
+    function add_student_record($data)
+    {
+        $query=  $this->db->insert("pto_students",$data);
+    }
+    function delete_student_record($id){
+        $this->db->where('student_id', $id);
+        $this->db->delete('pto_students');
+    }
+    function update_student_record($id,$data){
+        $this->db->where('student_id', $id);
+        $this->db->update('pto_students',$data);
+    }
+    
 }
 ?>
