@@ -20,32 +20,6 @@ class Student extends CI_Controller {
         $this->load->view('layout/admin_footer_internal');
     }
 
-    
-
-    public function do_save_student() {
-        $login['email'] = $this->input->post('userName');
-        $login['pass'] = $this->input->post('password');
-        //$login['group_id'] = $_REQUEST['group_id'];
-        $login['status'] = '1';
-        
-        $result = $this->student_model->insert_student($login);
-           
-                
-        redirect("admin/student");
-            
-        
-    }
-
-    public function insert_student() {
-
-        
-        $data['title'] = "Insert New Student";
-        $this->load->view('layout/admin_header_internal');
-        $this->load->view('admin/login_page',$data);
-        $this->load->view('layout/admin_footer');
-
-    }
-    
     public function insert_dummy_student(){
         // a hard code login code
         $data['parent_id'] = "1";
@@ -62,7 +36,7 @@ class Student extends CI_Controller {
         $this->student_model->insert_student($data);
     }
     
-    public function  update_record()
+    public function  do_save_student()
     {
 
         $this->form_validation->set_rules("first_name","First Name","required|xss_clear");
@@ -85,27 +59,26 @@ class Student extends CI_Controller {
         }  
         else 
         {
-            if(isset($_POST['update_record']))
-            {
-                $s_id=$this->input->post('s_id');
-                $data=array
-                    (
-                        'first_name'  =>$this->input->post('first_name'),
-                        'last_name'  =>$this->input->post('last_name'),
-                        'address'  =>$this->input->post('address'),
-                        'mobile'  =>$this->input->post('mobile'),
-                        'email'  =>$this->input->post('email'),
-                    );
-                $this->student_model->update_student_record($s_id,$data);
-                $this->session->set_userdata(array(
-                        'sess_msg' => " Record Successfully Updated",
-                        'sess_msg_type' => 'success'
+            
+            $s_id=$this->input->post('s_id');
+            $data=array
+                (
+                    'first_name'  =>$this->input->post('first_name'),
+                    'last_name'  =>$this->input->post('last_name'),
+                    'address'  =>$this->input->post('address'),
+                    'mobile'  =>$this->input->post('mobile'),
+                    'email'  =>$this->input->post('email'),
+                );
+            $this->student_model->update_student_record($s_id,$data);
+            $this->session->set_userdata(array(
+                'sess_msg' => " Record Successfully Updated",
+                'sess_msg_type' => 'success'
             ));
             redirect("admin/student");
-            }
-            }   
+            
+        }   
     }
-    public function  add_record()
+    public function  do_insert_student()
     {
 
         $this->form_validation->set_rules("first_name","First Name","required|xss_clear");
@@ -129,18 +102,17 @@ class Student extends CI_Controller {
         }  
         else 
         {
-            if(isset($_POST['insert_record']))
-            {
-                $data=array
-                    (
-                        'first_name'  =>$this->input->post('first_name'),
-                        'last_name'  =>$this->input->post('last_name'),
-                        'address'  =>$this->input->post('address'),
-                        'mobile'  =>$this->input->post('mobile'),
-                        'email'  =>$this->input->post('email'),
-                    );
-                $this->student_model->add_student_record($data);
-            }
+            
+            $data=array
+                (
+                    'first_name'  =>$this->input->post('first_name'),
+                    'last_name'  =>$this->input->post('last_name'),
+                    'address'  =>$this->input->post('address'),
+                    'mobile'  =>$this->input->post('mobile'),
+                    'email'  =>$this->input->post('email'),
+                );
+            $this->student_model->add_student_record($data);
+            
             $this->session->set_userdata(array(
                             'first_name'  =>'',
                             'last_name'  =>'',
@@ -157,19 +129,18 @@ class Student extends CI_Controller {
             redirect("admin/student"); 
         }   
     }
-    public function  delete_record()
+    public function  delete_student()
     {
-        if(isset($_POST['delete_record']))
-            {
-                $s_id=$this->input->post('s_id');
+        
+        $s_id=$this->input->post('s_id');
 
-                $this->student_model->delete_student_record($s_id);
-            }
-            $this->session->set_userdata(array(
-                'sess_msg' => "Record Successfully Deleted",
-                'sess_msg_type' => 'success'
-            ));
-            redirect("admin/student");
+        $this->student_model->delete_student_record($s_id);
+
+        $this->session->set_userdata(array(
+            'sess_msg' => "Record Successfully Deleted",
+            'sess_msg_type' => 'success'
+        ));
+        redirect("admin/student");
     }   
 
     

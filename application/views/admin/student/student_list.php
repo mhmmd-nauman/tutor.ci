@@ -181,8 +181,8 @@
 			<div class="modal-content">
 				<div class="modal-header">
                                     <?php
-                                        $this->load->helper("form");
-                                        echo form_open("admin/student/update_record");
+                                        
+                                        echo form_open("admin/student/do_save_student");
                                     ?>
                                     <input type="hidden" name="s_id" value="<?php echo $id;?>" id="s_id">
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
@@ -293,8 +293,8 @@
 					<div class="userInfo">
 						<div class="center">
                                                     <?php
-                                                        $this->load->helper("form");
-                                                        echo form_open("admin/student/delete_record");
+                                                        
+                                                        echo form_open("admin/student/delete_student");
                                                     ?>
                                                     <input type="hidden" name="s_id" value="<?php echo $id;?>" id="s_id">
                                                     <h4 class="modal-title" id="myModalLabel">R u Sure You Want Delete??</h4><br>
@@ -328,7 +328,7 @@
 				<div class="modal-header">
                                     <?php
                                         $this->load->helper("form");
-                                        echo form_open("admin/student/add_record");
+                                        echo form_open("admin/student/do_insert_student");
                                     ?>
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 					<br>
