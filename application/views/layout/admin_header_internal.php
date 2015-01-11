@@ -89,7 +89,7 @@
 						  </div>
 						  </a></li>	
 						<li>
-						  <a href="#classes" data-toggle="tab">
+						  <a href="<?php echo base_url();?>admin/classes">
 						  <div class="dash-ct">
 							  <span class="class-icon left"></span>	
 							  <span class="dtxt">Classes</span>
