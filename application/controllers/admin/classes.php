@@ -13,12 +13,13 @@ class Classes extends CI_Controller {
 	
 	public function index()
 	{       
+	    $data_class_type_id = $this->Classes_model->get_class_type();
 		$data_class_level_id = $this->Classes_model->get_class_level_id();
 		$data_class_type=$this->Classes_model->class_Type_show_record();
 		$data_class_level=$this->Classes_model->class_level_show_record();			
 		$data=$this->Classes_model->class_show_record();
 		$this->load->view('layout/admin_header_internal');
-		$this->load->view('admin/classes', array('data'=>$data, 'data_class_type'=>$data_class_type, 'data_class_level'=>$data_class_level, 'data_class_level_id'=>$data_class_level_id));
+		$this->load->view('admin/classes', array('data'=>$data, 'data_class_type'=>$data_class_type, 'data_class_level'=>$data_class_level, 'data_class_level_id'=>$data_class_level_id, 'data_class_type_id'=>$data_class_type_id));
 		$this->load->view('layout/admin_footer');
 		
 	}
@@ -39,34 +40,41 @@ class Classes extends CI_Controller {
             }  
             else 
             {
-				     $this->session->set_userdata(array(
+				         $this->session->set_userdata(array(
 						'sess_msges_type' => "success",
 						'sess_msges'      => "Data inserted successfully....",
 						 ));
 						 $config = array(
-									'upload_path' => "./assets/upload_image/",
-									'allowed_types' => "gif|jpg|png|jpeg|pdf",
-									'overwrite' => TRUE,
-									'max_size' => "2048000", 
-									'max_height' => "768",
-									'max_width' => "1024"
+									    'upload_path'   => "./assets/upload_img",
+										'allowed_types' => "gif|jpg|png",
+										'max_size'      => "10000",
+										'encrypt_name'  => true,
+										'remove_spaces' => TRUE,
+										'overwrite'     => false,
 						              );
-                    				$this->load->library('upload', $config);
-									if ($this->upload->do_upload()) 
+									
+                    		     	$this->load->library('upload', $config);
+									if (!($this->upload->do_upload('img')))
 									{
-												
+										echo 'error';
+					                    exit;
+					                    		
 									}
 									else
 									{
 										$upload_data = $this->upload->data();
-										$file = $upload_data['orig_name'];
+										
+										var_dump($upload_data);
+										
+								        exit;
+                                        $file = $upload_data['orig_name'];		
 										
 										$data = array(
 										'language'          => $this->input->post('language'),
 										'class_title'       => $this->input->post('class_title'),
 										'class_description' => $this->input->post('class_description'),
-										'photo'             => $file
-										
+										'photo'             => $file,
+										'method' => $this->input->post('class_method'),
 						
 										);
 					
@@ -92,6 +100,7 @@ class Classes extends CI_Controller {
 					  'class_title'       => $this->input->post('class_title'),
 					  'class_description' => $this->input->post('class_description'),
 					  'photo'             => $this->input->post('img'),
+					  'method'            => $this->input->post('class_method'),
 			);
 			
 			$this->Classes_model->update_class($id,$data);
@@ -202,6 +211,88 @@ class Classes extends CI_Controller {
 			
 			$this->Classes_model->update_class_level($id,$data);
 			redirect('admin/classes/add_level', 'refresh');	
+			
+		  
+	}
+	public function add_class_type()
+	{
+		 
+		    $this->form_validation->set_rules("class_type_id","class id","required|xss_clear");
+            $this->form_validation->set_rules("class_type","class type","required|xss_clear");
+			
+            if($this->form_validation->run()==FALSE)
+            {
+				            $data = array(
+										'class_type_id' => $this->input->post('class_type_id'),
+										'class_type'    => $this->input->post('class_type'),
+										
+							         	 );
+										if(isset($_POST['add_class_type'])==$data)
+				                         {
+											  $this->session->set_userdata(array(
+													'sess_error_type1type'  => "error",
+													'sess_error_msges1type' => "All Field Requied",
+													
+													 ));
+						
+				                         }
+			
+				redirect('admin/classes', 'refresh');
+            }  
+            else 
+            {
+				                
+								       $this->session->set_userdata(array(
+								        
+										'sess_delete_level_idtype' => "",
+					                    'sess_delete_leveltype' => "",
+										'sess_msges_type1type' => "success",
+										'sess_msges1type' => "Data inserted successfully....",
+										
+										 ));
+										
+										$data = array(
+										'class_type_id' => $this->input->post('class_type_id'),
+										'class_type'    => $this->input->post('class_type'),
+										
+										);
+									    
+									    $this->Classes_model->add_class_type($data);
+									    redirect('admin/classes/add_class_type', 'refresh');		
+			
+            }   
+		
+	}
+	public function delete_class_type()
+    {
+		     $this->session->set_userdata(array(
+			       
+				    'sess_error_type1type'     => "",
+					'sess_error_msges1type'    => "",
+                    'sess_delete_level_idtype' => "delete",
+					'sess_delete_leveltype'    => "Data deleted successfully....",
+				    
+			   ));
+                    $id=$this->input->post('class_type_id');
+                    $this->Classes_model->delete_class_type_id($id);
+               
+                   redirect('admin/classes/add_class_type', 'refresh');	
+                         
+    }
+	public function update_class_type()
+	{
+		    $this->session->set_userdata(array(
+                    'sess_update_class_leveltype'    => "update_level",
+				    'sess_update_mgs_leveltype'      => "Data updated successfully....",
+				
+			 ));
+		                                $id= $this->input->post('class_type_id');
+		                                $data = array(
+										'class_type'    => $this->input->post('class_type'),
+										);
+			      		
+			$this->Classes_model->update_class_type($id,$data);
+			redirect('admin/classes/add_class_type', 'refresh');	
 			
 		  
 	}

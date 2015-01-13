@@ -78,13 +78,13 @@
 		<table class="table-striped">
 			<tr>
              
-				<th>#</th> <th>Language</th> <th>Class Title</th> <th>Class Description</th> <th>photo</th>  <th></th>
+				<th>#</th> <th>Language</th> <th>Class Title</th> <th>Class Description</th> <th>Method</th><th>photo</th><th>
 			</tr>
             <?php
 										//print_r($persons);
 										for($i=0; $i<count($data);$i++) {
 										?>
-			<tr><td><?php echo $data[$i]->class_id;?></td> <td><?php echo $data[$i]->language;?></td> <td><?php echo $data[$i]->class_title;?></td> <td><?php echo $data[$i]->class_description;?></td> <td><?php echo $data[$i]->photo;?></td>
+			<tr><td><?php echo $data[$i]->class_id;?></td> <td><?php echo $data[$i]->language;?></td> <td><?php echo $data[$i]->class_title;?></td> <td><?php echo $data[$i]->class_description;?></td> <td><?php echo $data[$i]->method;?></td><td><?php echo $data[$i]->photo;?></td>
              <td><a href="" class="glyphicon glyphicon-search modalLink" data-toggle="modal" data-target="#preview_model<?php echo $data[$i]->class_id;?>">Preview</a>
              <a href="" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#edit_model<?php echo $data[$i]->class_id;?>">Edit</a>
              <a href="" class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#delete_class_Modal<?php echo $data[$i]->class_id;?>">Delete</a></td></tr>
@@ -109,6 +109,7 @@
 							<div class="row"><label>Language:</label> <span><?php echo $data[$i]->language;?></span></div>
 							<div class="row"><label>Class Title:</label> <span><?php echo $data[$i]->class_title;?></span></div>
 							<div class="row"><label>Class Description:</label> <span><?php echo $data[$i]->class_description;?></span></div>
+                            <div class="row"><label>Class Description:</label> <span><?php echo $data[$i]->method;?></span></div>
 						</div>
 					</div>
 					<div class="userStat">
@@ -141,10 +142,11 @@
 		$hidden = array(
 			//'username' => 'Joe', 'member_id' => '234'
 			);
-		echo form_open('admin/classes/update',$attributes,$hidden);?>
+	?>	
    
    <?php
 	for($i=0; $i<count($data);$i++) {
+		echo form_open('admin/classes/update',$attributes,$hidden);
 	?>
     
 	<div class="modal fade" id="edit_model<?php echo $data[$i]->class_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -152,25 +154,36 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-					<br>
+					<div style="color:#09F; margin-left:15px">
+                        <span><h4>Update Class</h4></span>
+                    </div>
 					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
-					<div class="userInfo">
-						<div >
-                          <div class="col-md-10" style="margin-left:20px">
-                            
-                            <div class="row"><input type="hidden" name="class_id" value="<?php echo $data[$i]->class_id; ?>"></div>
- 							<div class="row"><label>Language:</label><input type="text" name="language" value="<?php echo $data[$i]->language;?>" class="form-control col-md-2"/></div>
-							<div class="row"><label>Class Title:</label> <input type="text" name="class_title" value="<?php echo $data[$i]->class_title;?>" class="form-control"/></div>
-							<div class="row"><label>Class Description:</label> <input type="text" name="class_description" value="<?php echo $data[$i]->class_description;?>" class="form-control"/></div>
-                            <div class="row"><label>Photo:</label> <input type="file" name="img" value="" /></div><br />
-                            <div class="row"><input type="submit" name="update_class" value="Update" class="btn btn-primary "/></div>
-                            </div>
-                            
-                           
-						</div>
-                        
-					</div>
-                                  
+					         
+                             <input type="hidden" name="class_id" value="<?php echo $data[$i]->class_id;?>" class="form-control input-sm"/>
+                             <div class="form-group col-md-5">
+                                <label>Language:</label><input type="text" name="language" value="<?php echo $data[$i]->language;?>" class="form-control input-sm"/>
+                             </div>
+                             <div class="form-group col-md-5">
+                             <label>Class Title:</label> <input type="text" name="class_title" value="<?php echo $data[$i]->class_title;?>" class="form-control input-sm"/> 
+                             </div>
+                             <div class="form-group col-md-5">
+                                <label>Class Description:</label> <input type="text" name="class_description" value="<?php echo $data[$i]->class_description;?>" class="form-control input-sm"/>
+                             </div>
+                             <div class="form-group col-md-5">
+                                 <label>Class Type:</label> 
+                                    <select name='class_method' id='id' class="form-control input-sm">
+                                           <option value="<?php echo $data[$i]->class_id;?>"><?php echo $data[$i]->method;?></option>
+                                           <option value="Reading">Reading</option>
+                                           <option value="Speaking">Speaking</option>
+                                     </select>
+                             </div>
+                             <div class="form-group col-md-5" style="margin-left:122px">
+                                  <label>Photo:</label> <input type="file" name="img" value="" />
+                             </div>
+                             <div class="form-group col-md-5" style="margin-top:20px">
+                             <input type="submit" name="update_class" value="Update" class="btn btn-primary "/>
+                             </div>
+                       
 					
 					<div class="clearfix"></div>
 				</div>
@@ -180,9 +193,9 @@
 			</div>
 		</div>
 	</div>
-    
-    <?php } ?>
     </form>
+    <?php } ?>
+    
     
      <?php 
 		$attributes = array('method' => 'post','enctype'=>'multipart/form-data');
@@ -197,7 +210,9 @@
 				<div class="modal-header">
                 
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                      
+                     <div style="color:#09F; margin-left:15px">
+                        <span><h4>Add New Class</h4></span>
+                    </div> 
 					<br>
                      <?php
                                                 if ($this->session->userdata('sess_error_type') == 'error') {
@@ -212,24 +227,33 @@
                                                 ));
                                                 } ?>
 					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
-					<div class="userInfo">
-						<div >
-                          <div class="col-md-10" style="margin-left:40px">
-                           
-                            <div class="row"><input type="hidden" name="class_id" value=""></div>
- 							<div class="row"><label>Language:</label><input type="text" name="language" value="" class="form-control "/></div>
-							<div class="row"><label>Class Title:</label> <input type="text" name="class_title" value="" class="form-control"/></div>
-							<div class="row"><label>Class Description:</label><textarea name="class_description" class="form-control"></textarea></div>
-                            
-                            <div class="row"><label>Photo:</label> <input type="file" name="img" value="" /></div><br />
-                            <div class="row"><input type="submit" name="add" value="Add" class="btn btn-primary "/>&nbsp;<input type="submit" name="cancel_" value="Cancel" class="btn btn-danger" data-dismiss="modal"/></div>
-                            
-                           
-                            </div>
-                          
-						</div>
-                         
-					</div>
+                    
+					
+                             <input type="hidden" name="class_id" value="" class="form-control input-sm"/>
+                             <div class="form-group col-md-5">
+                                <label>Language:</label><input type="text" name="language" value="" class="form-control input-sm"/>
+                             </div>
+                             <div class="form-group col-md-5">
+                             <label>Class Title:</label> <input type="text" name="class_title" value="" class="form-control input-sm"/> 
+                             </div>
+                             <div class="form-group col-md-5">
+                                <label>Class Description:</label> <input type="text" name="class_description" value="" class="form-control input-sm"/>
+                             </div>
+                             <div class="form-group col-md-5">
+                                 <label>Class Type:</label> 
+                                    <select name='class_method' id='id' class="form-control input-sm">
+                                           <option value="Reading">Reading</option>
+                                           <option value="Speaking">Speaking</option>
+                                     </select>
+                             </div>
+                             <div class="form-group col-md-5" style="margin-left:122px">
+                                  <label>Photo:</label> <input type="file" name="image" value="" />
+                             </div>
+                             <div class="form-group col-md-5" style="margin-top:20px">
+                             <input type="submit" name="add" value="Add" class="btn btn-primary "/>&nbsp;<input type="submit" name="cancel_" value="Cancel" class="btn btn-danger" data-dismiss="modal"/>
+                             </div>
+                       
+					
 					<div class="clearfix"></div>
 				</div>
 				
@@ -255,7 +279,9 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-					<br>
+					<div style="color:#09F; margin-left:15px">
+                        <span><h4>Delete Here</h4></span>
+                    </div>
 					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
 					<div class="userInfo">
 						<div >
@@ -296,30 +322,144 @@
     <?php } ?>
 
  </form>
- 
- 
+  <script>
+        $(function() {
+                <?php
+                    if ($this->session->userdata('sess_msges_type1type') == 'success') { ?>
+                    $('#new_class_type_model').modal('show');
+                    });
+                    <?php } ?>
+				<?php
+                    if ($this->session->userdata('sess_msges_type1type') == 'dublicate') { ?>
+                    $('#new_class_type_model').modal('show');
+                    });
+                    <?php } ?>
+		         <?php
+                    if ($this->session->userdata('sess_delete_level_idtype') == 'delete') { ?>
+                    $('#new_class_type_model').modal('show');
+                    });
+                    <?php } ?>
+				 <?php
+                    if ($this->session->userdata('sess_error_type1type') == 'error') { ?>
+                    $('#new_class_type_model').modal('show');
+                    });
+                    <?php } ?>
+				 <?php
+                    if ($this->session->userdata('sess_update_class_leveltype') == 'update_level') { ?>
+                    $('#new_class_type_model').modal('show');
+                    });
+                    <?php } ?>
+					
+		
+    </script>
+ <?php 
+		$attributes = array('method' => 'post','enctype'=>'multipart/form-data');
+		$hidden = array(
+			//'username' => 'Joe', 'member_id' => '234'
+			);
+		echo form_open('admin/classes/add_class_type',$attributes,$hidden);?>
+   
  <div class="modal fade" id="new_class_type_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-					<br>
-					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
-					<div class="userInfo">
-						<div >
-                          <div class="col-md-11" style="margin-left:20px">
-                            
-                            <div class="row"><input type="hidden" name="class_id" value=""></div>
-                                              
-                                  <div class="row"><input type="hidden" name="class_id" value=""></div>
-                                  <div class="row"><label>Class Type :</label> <input type="text" name="class_title" value="" class="form-control"/></div>
-                           
-                            </div>
-                           
-						</div>
+                    	<div style="color:#09F; margin-left:15px">
+                        <span><h4>Class Type</h4></span>
+                    </div>  
+                    
+                    <br />
+                       <?php
+                                                if ($this->session->userdata('sess_msges_type1type') == 'success') {
+                                                    ?>
+                                                <div class="alert alert-success">
+                                                    <strong><?php echo $this->session->userdata('sess_msges1type');?></strong> 
+                                                </div>
+                                                <?php 
+												$this->session->set_userdata(array(
+                                                   'sess_msges_type1type' => "",
+                                                   'sess_msges1type' =>"",
+												   
+                                                ));
+                                                } ?>
+                                                 <?php
+                                                if ($this->session->userdata('sess_msges_type1type') == 'dublicate') {
+                                                    ?>
+                                                <div class="alert alert-danger">
+                                                    <strong><?php echo $this->session->userdata('sess_msges1type');?></strong> 
+                                                </div>
+                                                <?php 
+												$this->session->set_userdata(array(
+                                                   'sess_msges_type1type' => "",
+                                                   'sess_msges1type' =>"",
+												   
+                                                ));
+                                                } ?>
+                                                <?php
+                                                if ($this->session->userdata('sess_delete_level_idtype') == 'delete') {
+                                                    ?>
+                                                <div class="alert alert-success">
+                                                    <strong><?php echo $this->session->userdata('sess_delete_leveltype');?></strong> 
+                                                </div>
+                                                <?php 
+												$this->session->set_userdata(array(
+                                                   'sess_delete_level_idtype' => "",
+                                                   'sess_delete_leveltype' =>""
+                                                ));
+                                                } ?>
+                                                 <?php
+                                                if ($this->session->userdata('sess_error_type1type') == 'error') {
+                                                    ?>
+                                                <div class="alert alert-danger">
+                                                    <strong><?php echo $this->session->userdata('sess_error_msges1type');?></strong> 
+                                                </div>
+                                                <?php 
+												$this->session->set_userdata(array(
+                                                   'sess_error_type1type' => "",
+                                                   'sess_error_msges1type' =>""
+                                                ));
+                                                } ?>
+                                                <?php
+                                                if ($this->session->userdata('sess_update_class_leveltype') == 'update_level') {
+                                                    ?>
+                                                <div class="alert alert-success">
+                                                    <strong><?php echo $this->session->userdata('sess_update_mgs_leveltype');?></strong> 
+                                                </div>
+                                                <?php 
+												$this->session->set_userdata(array(
+                                                   'sess_update_class_leveltype' => "",
+                                                   'sess_update_mgs_leveltype' =>""
+                                                ));
+                                                } ?>
+					                   
+                       <input type="hidden" name="class_level_id" value="">
+                        <div class="form-group col-md-5">
+                            <label>Class Type Id:</label> 
+                            <select name='class_type_id' id='id' class="form-control input-sm">
+                            <option></option>
+                            <?php 
+                                
+                                if (count($data_class_type_id)) {
+                                    foreach ($data_class_type_id as $list) { ?>
+                               <option value="<?php echo $list['booking_order_id'];?>"><?php echo $list['class_type'];?></option>
+                               <?php }}?> 
+                            </select>
+                            <br />
+                            <input type="submit" name="add_class_type" value="ADD" class="btn btn-success" />
+                            <input type="submit" name="cancel_class_type" value="Cancel" class="btn btn-danger" data-dismiss="modal"/>
+            
+                        </div>
+                         <div class="form-group col-md-5">
+                            <label>Class Type:</label> 
+                            <select name='class_type' id='id' class="form-control input-sm">
+                                   <option></option>
+                                   <option value="Class_Trail">Class Trail</option>
+                                   <option value="Class_Paid">Class Paid</option>
+                                   <option value="Class_One2One_Trail">Class One2One Trail</option>
+                            </select>
+                        </div>
                         
-					</div>
-					
+            
 					<div class="clearfix"></div>
                     <div class="modal-body">
 					<div class="table-responsive">
@@ -331,8 +471,8 @@
 										//print_r($persons);
 										for($i=0; $i<count($data_class_type);$i++) {
 										?>
-							<tr><td><?php echo $data_class_type[$i]->class_type_id;?></td> <td><?php echo $data_class_type[$i]->class_type;?></td><td></td> <td><span class="glyphicon glyphicon-time"></span></td>         </tr>
-							<?php }?>
+							<tr><td><?php echo $data_class_type[$i]->class_type_id;?></td> <td><?php echo $data_class_type[$i]->class_type;?></td><td><a href="" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#update_class_type_model<?php echo $data_class_type[$i]->class_type_id;?>">Edit</a><a href="" class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#delete_class_type_id<?php echo $data_class_type[$i]->class_type_id;?>">Delete</a></td> <td></td>         </tr>
+							 <?php }?>
 						</table>
 					</div>
 				</div>
@@ -343,6 +483,125 @@
 			</div>
 		</div>
 	</div>
+    </form>
+     <?php 
+		$attributes = array('method' => 'post','enctype'=>'multipart/form-data');
+		$hidden = array(
+			//'username' => 'Joe', 'member_id' => '234'
+			);
+		echo form_open('admin/classes/delete_class_type',$attributes,$hidden);?>
+    
+    <?php
+	for($i=0; $i<count($data_class_type);$i++) {
+	?>
+   <div class="modal fade" id="delete_class_type_id<?php echo $data_class_type[$i]->class_type_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+					<div style="color:#09F; margin-left:15px">
+                        <span><h4>Delete Here</h4></span>
+                    </div>
+					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
+					<div class="userInfo">
+						<div >
+                         <div class="col-md-11" style="margin-left:20px">
+                            
+                            <div class="row"><input type="hidden" name="class_type_id" value="<?php echo $data_class_type[$i]->class_type_id;?>"></div>
+                                              
+                             <div class="row alert alert-error"><h5>Are you sure! You want to delete it</h5>
+                             <input type="submit" name="delete_type" value="Yes" class="btn btn-danger " />
+                             <input type="submit" name="cancel_class_type" value="No" class="btn btn-success" data-dismiss="modal"/>
+                            </div>
+                            
+                            </div>
+                           
+						</div>
+                        
+					</div>
+					
+					<div class="clearfix"></div>
+                    <div class="modal-body">
+					<div class="table-responsive">
+						<table class="table-striped">
+							<tr>
+								<th># Class type Id</th> <th>Class type</th> <th></th><th></th>
+							</tr>
+                            
+							<tr><td><?php echo $data_class_type[$i]->class_type_id;?></td> <td><?php echo $data_class_type[$i]->class_type;?></td></tr>
+						
+						</table>
+					</div>
+				</div>
+				</div>
+				
+				<!--<div class="modal-footer"></div>-->
+                
+			</div>
+		</div>
+	</div>
+    <?php }?>
+     </form>
+      <?php 
+                    $attributes = array('method' => 'post','enctype'=>'multipart/form-data');
+                    $hidden = array(
+                        //'id' => 'Joe',
+                        );
+                    ?>
+               
+				   <?php
+                    for($i=0; $i<count($data_class_type);$i++) {
+						echo form_open('admin/classes/update_class_type',$attributes,$hidden);
+                    ?>
+                                                   
+   <div class="modal fade" id="update_class_type_model<?php echo $data_class_type[$i]->class_type_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+					<div style="color:#09F; margin-left:15px">
+                        <span><h4>Update Class Type</h4></span>
+                    </div>                  
+					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
+					
+                                    
+                                            
+                                           
+                                           <input type="hidden" name="class_type_id" value="<?php echo $data_class_type[$i]->class_type_id;?>" />
+                                           
+                                           
+-->                                            <div class="form-group col-md-5">
+                                                <label>Class Type:</label> 
+                                                <select name='class_type' id='id' class="form-control input-sm">
+                                                       <option value="<?php echo $data_class_type[$i]->class_type_id;?>"><?php echo $data_class_type[$i]->class_type;?></option>
+                                                       <option value="CLASS-TRIAL">CLASS-TRIAL</option>
+                                                       <option value="ONE2ONE-PAID">ONE2ONE-PAID</option>
+                                                       <option value="CLASS-PAID">CLASS-PAID</option>
+                                                       <option value="ONE2ONE-TRIAL">ONE2ONE-TRIAL</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-5">
+                                             <br />
+                                            <input type="submit" name="add_class_type" value="Update" class="btn btn-success" />
+                                            <input type="submit" name="cancel_class_type" value="Cancel" class="btn btn-danger" data-dismiss="modal"/>
+                                            
+                                            </div>
+                                           
+
+					
+					<div class="clearfix"></div>
+                    
+				</div>
+				
+				<!--<div class="modal-footer"></div>-->
+                
+			</div>
+		</div>
+	</div>
+     </form>
+    <?php } ?>
+
+    
      <script>
         $(function() {
                 <?php
@@ -385,8 +644,9 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-					<br>
-                                              
+					<div style="color:#09F; margin-left:15px">
+                        <span><h4>Add New Class Level</h4></span>
+                    </div>             
                                                  <?php
                                                 if ($this->session->userdata('sess_msges_type1') == 'success') {
                                                     ?>
@@ -525,9 +785,9 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-					<br>
-                      
-					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
+					<div style="color:#09F; margin-left:15px">
+                        <span><h4>Delete Class Level</h4></span>
+                    </div>  					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
 					<div class="userInfo">
 						<div >
                          <div class="col-md-11" style="margin-left:20px">
@@ -584,8 +844,9 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-					<br>
-                                              
+					<div style="color:#09F; margin-left:15px">
+                        <span><h4>Update Class Level</h4></span>
+                    </div>                         
 					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
 					
                                     
