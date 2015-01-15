@@ -40,48 +40,48 @@ class Classes extends CI_Controller {
             }  
             else 
             {
-				         $this->session->set_userdata(array(
-						'sess_msges_type' => "success",
-						'sess_msges'      => "Data inserted successfully....",
-						 ));
-						 $config = array(
-									    'upload_path'   => "./assets/upload_img",
-										'allowed_types' => "gif|jpg|png",
-										'max_size'      => "10000",
-										'encrypt_name'  => true,
-										'remove_spaces' => TRUE,
-										'overwrite'     => false,
-						              );
+                $this->session->set_userdata(array(
+                       'sess_msges_type' => "success",
+                       'sess_msges'      => "Data inserted successfully....",
+                        ));
+                $config = array(
+                        'upload_path'   => "./assets/upload_img",
+                        'allowed_types' => "gif|jpg|png",
+                        'max_size'      => "10000",
+                        'encrypt_name'  => true,
+                        'remove_spaces' => TRUE,
+                        'overwrite'     => false,
+                        );
 									
-                    		     	$this->load->library('upload', $config);
-									if (!($this->upload->do_upload('img')))
-									{
-										echo 'error';
-					                    exit;
-					                    		
-									}
-									else
-									{
-										$upload_data = $this->upload->data();
-										
-										var_dump($upload_data);
-										
-								        exit;
-                                        $file = $upload_data['orig_name'];		
-										
-										$data = array(
-										'language'          => $this->input->post('language'),
-										'class_title'       => $this->input->post('class_title'),
-										'class_description' => $this->input->post('class_description'),
-										'photo'             => $file,
-										'method' => $this->input->post('class_method'),
-						
-										);
-					
-									   $this->Classes_model->add_class($data);
-								
-									   redirect('admin/classes', 'refresh');		
-									}
+                    $this->load->library('upload', $config);
+                    if (!($this->upload->do_upload('image')))
+                    {
+                        //echo 'error';
+                        //exit;
+
+                    }
+                    else
+                    {
+                        $upload_data = $this->upload->data();
+
+                        //var_dump($upload_data);
+
+                        //exit;
+                        $file = $upload_data['orig_name'];		
+
+                        $data = array(
+                            'language'          => $this->input->post('language'),
+                            'class_title'       => $this->input->post('class_title'),
+                            'class_description' => $this->input->post('class_description'),
+                            'photo'             => $file,
+                            'method' => $this->input->post('class_method'),
+
+                        );
+
+                       $this->Classes_model->add_class($data);
+
+                       redirect('admin/classes', 'refresh');		
+                    }
 						
                 
             }   
