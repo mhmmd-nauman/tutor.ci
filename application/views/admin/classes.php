@@ -84,7 +84,7 @@
 										//print_r($persons);
 										for($i=0; $i<count($data);$i++) {
 										?>
-			<tr><td><?php echo $data[$i]->class_id;?></td> <td><?php echo $data[$i]->language;?></td> <td><?php echo $data[$i]->class_title;?></td> <td><?php echo $data[$i]->class_description;?></td> <td><?php echo $data[$i]->method;?></td><td><?php echo $data[$i]->photo;?></td>
+			<tr><td><?php echo $data[$i]->class_id;?></td> <td><?php echo $data[$i]->language;?></td> <td><?php echo $data[$i]->class_title;?></td> <td><?php echo $data[$i]->class_description;?></td> <td><?php echo $data[$i]->method;?></td><td><img src="<?php echo base_url();?>assets/upload_img/<?php echo $data[$i]->photo;?>" height="30px" width="30px" /></td>
              <td><a href="" class="glyphicon glyphicon-search modalLink" data-toggle="modal" data-target="#preview_model<?php echo $data[$i]->class_id;?>">Preview</a>
              <a href="" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#edit_model<?php echo $data[$i]->class_id;?>">Edit</a>
              <a href="" class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#delete_class_Modal<?php echo $data[$i]->class_id;?>">Delete</a></td></tr>
@@ -102,7 +102,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 					<br>
-					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/170747324.jpg?v=1&g=fs1|0|OJO|47|324&s=1" /> </div>
+					<div class="avatar"><img src="<?php echo base_url();?>assets/upload_img/<?php echo $data[$i]->photo;?>" height="120px" width="120px" /> </div>
 					<div class="userInfo">
 						<div class="center">
 							<h2 class="modal-title" id="myModalLabel">Philip</h2>
@@ -157,7 +157,7 @@
 					<div style="color:#09F; margin-left:15px">
                         <span><h4>Update Class</h4></span>
                     </div>
-					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
+					<div class="avatar"><img src="<?php echo base_url();?>assets/upload_img/<?php echo $data[$i]->photo;?>" height="120px" width="120px" /></div>
 					         
                              <input type="hidden" name="class_id" value="<?php echo $data[$i]->class_id;?>" class="form-control input-sm"/>
                              <div class="form-group col-md-5">
@@ -214,43 +214,35 @@
                         <span><h4>Add New Class</h4></span>
                     </div> 
 					<br>
-                     <?php
-                                                if ($this->session->userdata('sess_error_type') == 'error') {
-                                                    ?>
-                                                <div class="alert alert-danger">
-                                                    <strong><?php echo $this->session->userdata('sess_error_msges');?></strong> 
-                                                </div>
-                                                <?php 
-												$this->session->set_userdata(array(
-                                                   'sess_error_type' => "",
-                                                   'sess_error_msges' =>""
-                                                ));
-                                                } ?>
-					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
+                    
+					
                     
 					
                              <input type="hidden" name="class_id" value="" class="form-control input-sm"/>
-                             <div class="form-group col-md-5">
+                             <div class="form-group col-md-5"  style="margin-left:80px">
                                 <label>Language:</label><input type="text" name="language" value="" class="form-control input-sm"/>
                              </div>
-                             <div class="form-group col-md-5">
+                             <div class="form-group col-md-5"  >
                              <label>Class Title:</label> <input type="text" name="class_title" value="" class="form-control input-sm"/> 
                              </div>
-                             <div class="form-group col-md-5">
-                                <label>Class Description:</label> <input type="text" name="class_description" value="" class="form-control input-sm"/>
+                             <div class="form-group col-md-10"  style="margin-left:80px">
+                                <label>Class Description:</label><textarea  name="class_description" class="form-control input-sm"></textarea>
                              </div>
-                             <div class="form-group col-md-5">
+                             <div class="form-group col-md-5"  style="margin-left:80px">
                                  <label>Class Type:</label> 
                                     <select name='class_method' id='id' class="form-control input-sm">
                                            <option value="Reading">Reading</option>
                                            <option value="Speaking">Speaking</option>
                                      </select>
                              </div>
-                             <div class="form-group col-md-5" style="margin-left:122px">
+                             <div class="form-group col-md-5">
                                   <label>Photo:</label> <input type="file" name="image" value="" />
                              </div>
-                             <div class="form-group col-md-5" style="margin-top:20px">
+                             <div class="form-group col-md-5" >
                              <input type="submit" name="add" value="Add" class="btn btn-primary "/>&nbsp;<input type="submit" name="cancel_" value="Cancel" class="btn btn-danger" data-dismiss="modal"/>
+                             </div>
+                              <div class="form-group col-md-5" style="margin-top:20px">
+                                
                              </div>
                        
 					
@@ -282,7 +274,7 @@
 					<div style="color:#09F; margin-left:15px">
                         <span><h4>Delete Here</h4></span>
                     </div>
-					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
+					<div class="avatar"><img src="<?php echo base_url();?>assets/upload_img/<?php echo $data[$i]->photo;?>" height="120px" width="120px" /></div>
 					<div class="userInfo">
 						<div >
                           <div class="col-md-11" style="margin-left:20px">

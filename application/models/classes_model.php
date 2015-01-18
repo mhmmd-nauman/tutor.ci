@@ -1,9 +1,11 @@
 <?php
 Class Classes_model extends CI_Model
 {
+	
   	function class_show_record()
     {
       $query = $this->db->get('pto_class');
+	  
       return $query->result();
 
     }
@@ -26,6 +28,7 @@ Class Classes_model extends CI_Model
 	function class_Type_show_record()
     {
 		  $query = $this->db->get('pto_class_types');
+		  
 		  return $query->result();
 
     }
