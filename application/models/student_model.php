@@ -2,7 +2,14 @@
 Class student_model extends CI_Model
 {
     
-    
+    function search_guardian_id($name)
+    {
+        $this->db->select('user_id');
+        $this->db->where('first_name',$name);
+        $this->db->from('pto_users');
+        $query = $this->db->get(); 
+        return $query->result_array();
+    }
     function insert_student($data){
         $this->db->insert('pto_students', $data); 
         return $this->db->insert_id();

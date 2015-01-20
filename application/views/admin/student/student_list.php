@@ -322,6 +322,7 @@
                     });
                     <?php } ?>
 </script>
+
 <div class="modal fade" id="stu_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -342,15 +343,15 @@
                                         <div class="avatar"> <img src="<?php echo base_url(); ?>images/dash/avatar.jpg"/> </div>
 					<div class="form-group">
                                             <h3><small> Add New Student Record</small></h3>
-                                            
-                                            <div class="form-group col-md-3">
-                                                <?php 
+                                            <?php 
                                                     $firstname=$this->session->userdata('first_name');
                                                     $lastname=$this->session->userdata('last_name');
                                                     $address=$this->session->userdata('address');
                                                     $phone=$this->session->userdata('mobile');
                                                     $mail=$this->session->userdata('email');
                                                 ?>
+                                            <div class="form-group col-md-3">
+                                                
                                                 <?php
                                                 echo form_label("First Name:","firstname");
                                                 $data=array(
@@ -362,6 +363,7 @@
                                                 echo form_input($data); ?>
                                                  
                                             </div>
+                                            
                                             <div class="form-group col-md-3">
                                                 <?php
                                                 echo form_label("Last Name:","lastname");
@@ -373,8 +375,20 @@
                                                 );
                                                 echo form_input($data); ?>
                                             </div>
-                                        </div>
-                                        
+                                        <div class="form-group col-md-3">
+                                                <?php
+                                                echo form_label("Garudain Name:","garudian_name");
+                                                echo "<select name='garudian_id', id='garudian_id', class=form-control input-sm>";
+                                                if (count($parent)) 
+                                                    {
+                                                    foreach ($parent as $list) 
+                                                        {
+                                                            echo "<option value='". $list['user_id'] . "'>" . $list['first_name'] . "</option>";
+                                                        }
+                                                    }
+                                                echo "</select>"; ?>
+                                            </div>
+                                            </div>
                                         <div class="form-group" style="margin-left:117px">
                                             <div class="form-group col-md-7">
                                                 <?php

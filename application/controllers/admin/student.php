@@ -8,12 +8,13 @@ class Student extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('student_model');
+        $this->load->model('gardian_model');
     }
 
     function index() {
         
         $data['view'] = $this->student_model->get_student_list();
-        
+        $data['parent'] = $this->gardian_model->get_gardian_id();
         
         $this->load->view('layout/admin_header_internal');
         $this->load->view('admin/student/student_list',$data);
@@ -46,13 +47,13 @@ class Student extends CI_Controller {
         if($this->form_validation->run()==FALSE)
         {   
             $this->session->set_userdata(array(
-                        'first_name'  =>$this->input->post('first_name'),
-                        'last_name'  =>$this->input->post('last_name'),
-                        'address'  =>$this->input->post('address'),
-                        'mobile'  =>$this->input->post('mobile'),
-                        'email'  =>$this->input->post('email'),
-                        'sess_add_record_type'=>'error',
-                        'sess_add_record_msg'=>'Please Fill Correct Data',
+                'first_name'  =>$this->input->post('first_name'),
+                'last_name'  =>$this->input->post('last_name'),
+                'address'  =>$this->input->post('address'),
+                'mobile'  =>$this->input->post('mobile'),
+                'email'  =>$this->input->post('email'),
+                'sess_add_record_type'=>'error',
+                'sess_add_record_msg'=>'Please Fill Correct Data',
 
            ));
             $this->index();
@@ -63,11 +64,11 @@ class Student extends CI_Controller {
             $s_id=$this->input->post('s_id');
             $data=array
                 (
-                    'first_name'  =>$this->input->post('first_name'),
-                    'last_name'  =>$this->input->post('last_name'),
-                    'address'  =>$this->input->post('address'),
-                    'mobile'  =>$this->input->post('mobile'),
-                    'email'  =>$this->input->post('email'),
+                'first_name'  =>$this->input->post('first_name'),
+                'last_name'  =>$this->input->post('last_name'),
+                'address'  =>$this->input->post('address'),
+                'mobile'  =>$this->input->post('mobile'),
+                'email'  =>$this->input->post('email'),
                 );
             $this->student_model->update_student_record($s_id,$data);
             $this->session->set_userdata(array(
@@ -88,13 +89,13 @@ class Student extends CI_Controller {
         if($this->form_validation->run()==FALSE)
         {
             $this->session->set_userdata(array(
-                        'first_name'  =>$this->input->post('first_name'),
-                        'last_name'  =>$this->input->post('last_name'),
-                        'address'  =>$this->input->post('address'),
-                        'mobile'  =>$this->input->post('mobile'),
-                        'email'  =>$this->input->post('email'),
-                        'sess_add_record_type'=>'error',
-                        'sess_add_record_msg'=>'Please Fill Correct Data',
+                'first_name'  =>$this->input->post('first_name'),
+                'last_name'  =>$this->input->post('last_name'),
+                'address'  =>$this->input->post('address'),
+                'mobile'  =>$this->input->post('mobile'),
+                'email'  =>$this->input->post('email'),
+                'sess_add_record_type'=>'error',
+                'sess_add_record_msg'=>'Please Fill Correct Data',
 
            ));
             $this->index();
@@ -102,25 +103,27 @@ class Student extends CI_Controller {
         }  
         else 
         {
-            
+            //$g_name=$this->input->post('gardian_name');
+            //$g_id=$this->student_model->search_guardian_id($g_name);
             $data=array
                 (
-                    'first_name'  =>$this->input->post('first_name'),
-                    'last_name'  =>$this->input->post('last_name'),
-                    'address'  =>$this->input->post('address'),
-                    'mobile'  =>$this->input->post('mobile'),
-                    'email'  =>$this->input->post('email'),
+                'first_name'  =>$this->input->post('first_name'),
+                'last_name'  =>$this->input->post('last_name'),
+                'parent_id' =>$this->input->post('gardian_id'),
+                'address'  =>$this->input->post('address'),
+                'mobile'  =>$this->input->post('mobile'),
+                'email'  =>$this->input->post('email'),
                 );
             $this->student_model->add_student_record($data);
             
             $this->session->set_userdata(array(
-                            'first_name'  =>'',
-                            'last_name'  =>'',
-                            'address'  =>'',
-                            'mobile'  =>'',
-                            'email'  =>'',
-                            'sess_add_record_type'=>'',
-                            'sess_add_record_msg'=>'',
+                'first_name'  =>'',
+                'last_name'  =>'',
+                'address'  =>'',
+                'mobile'  =>'',
+                'email'  =>'',
+                'sess_add_record_type'=>'',
+                'sess_add_record_msg'=>'',
                ));
             $this->session->set_userdata(array(
                 'sess_msg' => "New Record Successfully Inserted",
