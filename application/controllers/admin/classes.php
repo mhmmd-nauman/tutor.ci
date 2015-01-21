@@ -106,6 +106,7 @@ class Classes extends CI_Controller {
 				
 			 ));
 		    $id= $this->input->post('class_id');
+			
 		   	$data = array(
 					  'language'          => $this->input->post('language'),
 					  'class_title'       => $this->input->post('class_title'),
@@ -114,7 +115,7 @@ class Classes extends CI_Controller {
 					  'method'            => $this->input->post('class_method'),
 			);
 			
-			$this->Classes_model->update_class($id,$data);
+			 $this->Classes_model->update_class($id,$data);
 			 redirect('admin/classes', 'refresh');
 			
 		  
@@ -256,9 +257,9 @@ class Classes extends CI_Controller {
 								       $this->session->set_userdata(array(
 								        
 										'sess_delete_level_idtype' => "",
-					                    'sess_delete_leveltype' => "",
-										'sess_msges_type1type' => "success",
-										'sess_msges1type' => "Data inserted successfully....",
+					                    'sess_delete_leveltype'    => "",
+										'sess_msges_type1type'     => "success",
+										'sess_msges1type'          => "Data inserted successfully....",
 										
 										 ));
 										

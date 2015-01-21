@@ -104,12 +104,12 @@
 					<br>
 					<div class="avatar"><img src="<?php echo base_url();?>assets/upload_img/<?php echo $data[$i]->photo;?>" height="120px" width="120px" /> </div>
 					<div class="userInfo">
-						<div class="center">
+						<div class="right">
 							<h2 class="modal-title" id="myModalLabel">Philip</h2>
-							<div class="row"><label>Language:</label> <span><?php echo $data[$i]->language;?></span></div>
-							<div class="row"><label>Class Title:</label> <span><?php echo $data[$i]->class_title;?></span></div>
-							<div class="row"><label>Class Description:</label> <span><?php echo $data[$i]->class_description;?></span></div>
-                            <div class="row"><label>Class Description:</label> <span><?php echo $data[$i]->method;?></span></div>
+							<div class="row"><label>Language:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <span><?php echo $data[$i]->language;?></span></div>
+							<div class="row"><label>Class Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <span><?php echo $data[$i]->class_title;?></span></div>
+							<div class="row"><label>Class Descrip:</label> <span><?php echo $data[$i]->class_description;?></span></div>
+                            <div class="row"><label>Class Method:</label> <span><?php echo $data[$i]->method;?></span></div>
 						</div>
 					</div>
 					<div class="userStat">
@@ -158,32 +158,37 @@
                         <span><h4>Update Class</h4></span>
                     </div>
 					<div class="avatar"><img src="<?php echo base_url();?>assets/upload_img/<?php echo $data[$i]->photo;?>" height="120px" width="120px" /></div>
-					         
-                             <input type="hidden" name="class_id" value="<?php echo $data[$i]->class_id;?>" class="form-control input-sm"/>
-                             <div class="form-group col-md-5">
+					         <input type="hidden" name="class_id" value="<?php echo $data[$i]->class_id;?>" class="form-control input-sm"/>
+                             <div class="form-group col-md-5" >
                                 <label>Language:</label><input type="text" name="language" value="<?php echo $data[$i]->language;?>" class="form-control input-sm"/>
                              </div>
-                             <div class="form-group col-md-5">
+                             <div class="form-group col-md-5"  >
                              <label>Class Title:</label> <input type="text" name="class_title" value="<?php echo $data[$i]->class_title;?>" class="form-control input-sm"/> 
                              </div>
-                             <div class="form-group col-md-5">
-                                <label>Class Description:</label> <input type="text" name="class_description" value="<?php echo $data[$i]->class_description;?>" class="form-control input-sm"/>
+                             <div class="form-group col-md-10" >
+                                <label>Class Description:</label><textarea  name="class_description" class="form-control input-sm"><?php echo $data[$i]->class_description;?></textarea>
                              </div>
-                             <div class="form-group col-md-5">
+                             <div class="form-group col-md-5" style="margin-left:120px">
                                  <label>Class Type:</label> 
-                                    <select name='class_method' id='id' class="form-control input-sm">
+                                     <select name='class_method' id='id' class="form-control input-sm">
                                            <option value="<?php echo $data[$i]->class_id;?>"><?php echo $data[$i]->method;?></option>
                                            <option value="Reading">Reading</option>
                                            <option value="Speaking">Speaking</option>
                                      </select>
                              </div>
-                             <div class="form-group col-md-5" style="margin-left:122px">
-                                  <label>Photo:</label> <input type="file" name="img" value="" />
+                             <div class="form-group col-md-5">
+                                  <label>Photo:</label> <input type="file" name="file_image" value="<?php echo $data[$i]->photo;?>" />
                              </div>
-                             <div class="form-group col-md-5" style="margin-top:20px">
-                             <input type="submit" name="update_class" value="Update" class="btn btn-primary "/>
+                            <div class="form-group col-md-5" style="margin-top:20px">
+                              <input type="submit" name="update_class" value="Update" class="btn btn-primary "/>
+                               <input type="submit" name="cancel_class_type" value="Cancel" class="btn btn-danger" data-dismiss="modal"/>
                              </div>
-                       
+                              <div class="form-group col-md-5" style="margin-top:20px">
+                                
+                             </div>
+                             
+                             
+                             
 					
 					<div class="clearfix"></div>
 				</div>
@@ -214,11 +219,7 @@
                         <span><h4>Add New Class</h4></span>
                     </div> 
 					<br>
-                    
-					
-                    
-					
-                             <input type="hidden" name="class_id" value="" class="form-control input-sm"/>
+                            <input type="hidden" name="class_id" value="" class="form-control input-sm"/>
                              <div class="form-group col-md-5"  style="margin-left:80px">
                                 <label>Language:</label><input type="text" name="language" value="" class="form-control input-sm"/>
                              </div>
@@ -425,7 +426,7 @@
                                                 } ?>
 					                   
                        <input type="hidden" name="class_level_id" value="">
-                        <div class="form-group col-md-5">
+                        <div class="form-group col-md-6">
                             <label>Class Type Id:</label> 
                             <select name='class_type_id' id='id' class="form-control input-sm">
                             <option></option>
@@ -441,7 +442,7 @@
                             <input type="submit" name="cancel_class_type" value="Cancel" class="btn btn-danger" data-dismiss="modal"/>
             
                         </div>
-                         <div class="form-group col-md-5">
+                         <div class="form-group col-md-6">
                             <label>Class Type:</label> 
                             <select name='class_type' id='id' class="form-control input-sm">
                                    <option></option>
@@ -494,7 +495,7 @@
 					<div style="color:#09F; margin-left:15px">
                         <span><h4>Delete Here</h4></span>
                     </div>
-					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
+					<div class="avatar"></div>
 					<div class="userInfo">
 						<div >
                          <div class="col-md-11" style="margin-left:20px">
@@ -554,7 +555,7 @@
 					<div style="color:#09F; margin-left:15px">
                         <span><h4>Update Class Type</h4></span>
                     </div>                  
-					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
+					<div class="avatar"> </div>
 					
                                     
                                             
@@ -703,7 +704,7 @@
                                                 } ?>
                                                
                                                
-					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
+					<div class="avatar"></div>
 					
                                     
                                             <div class="form-group col-md-5">
@@ -779,7 +780,7 @@
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 					<div style="color:#09F; margin-left:15px">
                         <span><h4>Delete Class Level</h4></span>
-                    </div>  					<div class="avatar"> <img src="http://cache4.asset-cache.net/xt/493189933.jpg?v=1&g=fs1|0|FPG|89|933&s=1" /> </div>
+                    </div>  					<div class="avatar"> </div>
 					<div class="userInfo">
 						<div >
                          <div class="col-md-11" style="margin-left:20px">

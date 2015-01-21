@@ -74,7 +74,7 @@
 							  <span class="dtxt">Dashboard</span>
 						  </div>
 						  </a></li>  
-                                                <li <?php if( $this->uri->segment(2) == 'student'){?> style="background-color: white;" <?php }?>>
+                          <li <?php if( $this->uri->segment(2) == 'student'){?> style="background-color: white;" <?php }?>>
                                                     
 						  <a href="<?php echo base_url(); ?>admin/student/index" >
                                                       <div class="dash-ct" >
@@ -89,7 +89,7 @@
 							  <span class="dtxt">Tutors</span>
 						  </div>
 						  </a></li>	
-						<li <?php if( $this->uri->segment(2) == 'classes'){?> style="background-color: white;" <?php }?>>
+						 <li <?php if( $this->uri->segment(2) == 'classes'){?> style="background-color: white;" <?php }?>>
                         
 						  <a href="<?php echo base_url();?>admin/classes">
 						  <div class="dash-ct">
@@ -98,7 +98,7 @@
 						  </div>
 						  </a></li>
 						<li>
-						 <a href="<?php echo base_url();?>admin/upload">
+						 <a href="<?php echo base_url();?>admin/calender">
 						  <div class="dash-ct">
 							  <span class="lesson-icon left"></span>	
 							  <span class="dtxt">One2One</span>
