@@ -81,7 +81,8 @@ class Student extends CI_Controller {
     }
     public function  do_insert_student()
     {
-
+        //$this->output->enable_profiler(TRUE);
+        
         $this->form_validation->set_rules("first_name","First Name","required|xss_clear");
         $this->form_validation->set_rules("last_name","Last Name");
         $this->form_validation->set_rules("email","Email Address");
@@ -109,7 +110,7 @@ class Student extends CI_Controller {
                 (
                 'first_name'  =>$this->input->post('first_name'),
                 'last_name'  =>$this->input->post('last_name'),
-                'parent_id' =>$this->input->post('gardian_id'),
+                'parent_id' =>$this->input->post('parent_id'),
                 'address'  =>$this->input->post('address'),
                 'mobile'  =>$this->input->post('mobile'),
                 'email'  =>$this->input->post('email'),

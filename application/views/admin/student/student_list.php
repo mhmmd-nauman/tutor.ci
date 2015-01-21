@@ -378,7 +378,9 @@
                                         <div class="form-group col-md-3">
                                                 <?php
                                                 echo form_label("Garudain Name:","garudian_name");
-                                                echo "<select name='garudian_id', id='garudian_id', class=form-control input-sm>";
+                                                echo form_dropdown('parent_id', $parent, set_value('parent_id', 0));
+                                                /*
+                                                echo "<select name='parent_id' id='parent_id' class='form-control input-sm'>";
                                                 if (count($parent)) 
                                                     {
                                                     foreach ($parent as $list) 
@@ -386,7 +388,9 @@
                                                             echo "<option value='". $list['user_id'] . "'>" . $list['first_name'] . "</option>";
                                                         }
                                                     }
-                                                echo "</select>"; ?>
+                                                echo "</select>";
+                                                 */  ?>
+                                                 
                                             </div>
                                             </div>
                                         <div class="form-group" style="margin-left:117px">

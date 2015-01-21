@@ -15,9 +15,15 @@ Class Gardian_model extends CI_Model
         $this->db->from('pto_users');
         
 	$this->db->order_by("first_name", "desc");
-        $query = $this->db->get(); 
+        $result = $this->db->get(); 
+        $return = array();
+        if($result->num_rows() > 0) {
+          foreach($result->result_array() as $row) {
+            $return[$row['user_id']] = $row['first_name'];
+          }
+        }
         
-        return $query->result_array();
+        return $return;
     }
     function update_guardian_record($id,$data){
         $this->db->where('user_id', $id);
