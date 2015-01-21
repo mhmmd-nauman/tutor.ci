@@ -88,20 +88,20 @@
 							  <span class="dtxt">Gardian</span>
 						  </div>
 						  </a></li>	
-						<li>
-						  <a href="<?php echo base_url();?>admin/classes">
-						  <div class="dash-ct">
-							  <span class="class-icon left"></span>	
-							  <span class="dtxt">Classes</span>
-						  </div>
-						  </a></li>
-						<li>
-						  <a href="#one2one-classes" data-toggle="tab">
-						  <div class="dash-ct">
-							  <span class="lesson-icon left"></span>	
-							  <span class="dtxt">One2One</span>
-						  </div>
-						  </a></li>
+						<li <?php if( $this->uri->segment(2) == 'classes'){?> style="background-color: white;" <?php }?>>
+                                                <a href="<?php echo base_url();?>admin/classes">
+                                                <div class="dash-ct">
+                                                 <span class="class-icon left"></span> 
+                                                 <span class="dtxt">Classes</span>
+                                                </div>
+                                                </a></li>
+                                              <li <?php if( $this->uri->segment(2) == 'calender'){?> style="background-color: white;" <?php }?>>
+                                               <a href="<?php echo base_url();?>admin/calender">
+                                                <div class="dash-ct">
+                                                 <span class="lesson-icon left"></span> 
+                                                 <span class="dtxt">One2One</span>
+                                                </div>
+                                                </a></li>
                                                 <li class="margbottom20">
 						  <a href="#reports" data-toggle="tab">
 						  <div class="dash-ct">
