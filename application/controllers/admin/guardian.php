@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Gardian extends CI_Controller {
+class Guardian extends CI_Controller {
 
     function __construct() {
         parent::__construct();
