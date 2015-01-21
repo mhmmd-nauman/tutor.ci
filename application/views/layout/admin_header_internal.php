@@ -44,7 +44,6 @@
   
   <body id="top">
     <!-- CONTENT -->
-    
 	<div class="container2">
 
 		
@@ -74,23 +73,22 @@
 							  <span class="dtxt">Dashboard</span>
 						  </div>
 						  </a></li>  
-                          <li <?php if( $this->uri->segment(2) == 'student'){?> style="background-color: white;" <?php }?>>
+                                                <li <?php if( $this->uri->segment(2) == 'student'){?> style="background-color: white;" <?php }?>>
                                                     
-						  <a href="<?php echo base_url(); ?>admin/student/index" >
+						  <a href="<?php echo base_url(); ?>admin/student" >
                                                       <div class="dash-ct" >
 							  <span class="profile-icon left"></span>									  
 							  <span class="dtxt">Students</span>
 						  </div>
 						  </a></li>	
-						<li class="margbottom20">
-						  <a href="#tutors" data-toggle="tab">
+						<li <?php if( $this->uri->segment(2) == 'gardian'){?> style="background-color: white;" <?php }?>>
+						  <a href="<?php echo base_url(); ?>admin/guardian">
 						  <div class="dash-ct">
 							  <span class="tutor-icon left"></span>									  
-							  <span class="dtxt">Tutors</span>
+							  <span class="dtxt">Gardian</span>
 						  </div>
 						  </a></li>	
-						 <li <?php if( $this->uri->segment(2) == 'classes'){?> style="background-color: white;" <?php }?>>
-                        
+						<li>
 						  <a href="<?php echo base_url();?>admin/classes">
 						  <div class="dash-ct">
 							  <span class="class-icon left"></span>	
@@ -98,7 +96,7 @@
 						  </div>
 						  </a></li>
 						<li>
-						 <a href="<?php echo base_url();?>admin/calender">
+						  <a href="#one2one-classes" data-toggle="tab">
 						  <div class="dash-ct">
 							  <span class="lesson-icon left"></span>	
 							  <span class="dtxt">One2One</span>
@@ -157,30 +155,7 @@
                                             <!-- Common Header part of every page -->
                                                 <div class="cpadding40">
                                                     <span class="size12 grey"><a href="<?php echo base_url(); ?>admin/login/logout" style="background:#eee; padding:4px 5px;"><img src="<?php echo base_url(); ?>images/dash/logout.png" alt=""/> Logout</a></span>
-                                                     <?php
-														if ($this->session->userdata('sess_msges_type') == 'success') {
-															?>
-														<div class="alert alert-success">
-															<strong><?php echo $this->session->userdata('sess_msges');?></strong> 
-														</div>
-														<?php 
-														$this->session->set_userdata(array(
-														   'sess_msges_type' => "",
-														   'sess_msges' =>""
-														));
-                                                     } ?>
-                                                      <?php
-														if ($this->session->userdata('sess_msges_type') == 'error') {
-															?>
-														<div class="alert alert-danger">
-															<strong><?php echo $this->session->userdata('sess_msges');?></strong> 
-														</div>
-														<?php 
-														$this->session->set_userdata(array(
-														   'sess_msges_type' => "",
-														   'sess_msges' =>""
-														));
-                                                     } ?>
+                                                    
                                                     <div class="line2"></div>
                                                 </div>
 
