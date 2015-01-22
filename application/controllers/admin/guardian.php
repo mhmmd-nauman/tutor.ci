@@ -53,7 +53,7 @@ class Guardian extends CI_Controller {
                 'g_sess_msg' => " Record Successfully Updated",
                 'g_sess_msg_type' => 'success'
             ));
-            redirect("admin/gardian");
+            redirect("admin/guardian");
             
         }   
     }
@@ -100,7 +100,7 @@ class Guardian extends CI_Controller {
                 'g_sess_msg' => "New Record Successfully Inserted",
                 'g_sess_msg_type' => 'success'
             ));
-            redirect("admin/gardian"); 
+            redirect("admin/guardian"); 
         }   
     }
     public function  delete_guardian()
@@ -114,7 +114,7 @@ class Guardian extends CI_Controller {
             'g_sess_msg' => "Record Successfully Deleted",
             'g_sess_msg_type' => 'success'
         ));
-        redirect("admin/gardian");
+        redirect("admin/guardian");
     }   
 
     

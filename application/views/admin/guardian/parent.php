@@ -117,7 +117,7 @@
                         <div class="modal-header">
                             <?php
 
-                                echo form_open("admin/gardian/do_save_parent");
+                                echo form_open("admin/guardian/do_save_parent");
                             ?>
                             <input type="hidden" name="p_id" value="<?php echo $id;?>" id="s_id">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
@@ -201,7 +201,7 @@
                                         <div class="center">
                                             <?php
 
-                                                echo form_open("admin/gardian/delete_guardian");
+                                                echo form_open("admin/guardian/delete_guardian");
                                             ?>
                                             <input type="hidden" name="p_id" value="<?php echo $id;?>" id="s_id">
                                             <h4 class="modal-title" id="myModalLabel">R u Sure You Want Delete??</h4><br>
@@ -236,7 +236,7 @@
 				<div class="modal-header">
                                     <?php
                                         $this->load->helper("form");
-                                        echo form_open("admin/gardian/do_insert_parent");
+                                        echo form_open("admin/guardian/do_insert_parent");
                                     ?>
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 					<br>
