@@ -13,7 +13,8 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  </head>
 <body>
-   <?php echo $cal;?>
+    <?php echo $this->calendar_week->generate($data); ?> 
+   <?php //echo $cal;?>
    <script type="text/javascript">
      $(document).ready(function() {
         $('.calendar .day').click(function() {
