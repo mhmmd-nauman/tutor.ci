@@ -19,7 +19,7 @@ Class Gardian_model extends CI_Model
         $return = array();
         if($result->num_rows() > 0) {
           foreach($result->result_array() as $row) {
-            $return[$row['user_id']] = $row['first_name'];
+            $return[$row['user_id']] = $row['first_name']."  ".$row['last_name'];
           }
         }
         
@@ -36,6 +36,9 @@ Class Gardian_model extends CI_Model
     function delete_gardian_record($id){
         $this->db->where('user_id', $id);
         $this->db->delete('pto_users');
+        //delete related student record
+        $this->db->where('parent_id', $id);
+        $this->db->delete('pto_students');
     }
 }
 ?>

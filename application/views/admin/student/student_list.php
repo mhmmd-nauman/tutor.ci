@@ -213,6 +213,13 @@
                                                 );
                                                 echo form_input($data); ?>
                                             </div>
+                                            <div class="form-group col-md-3">
+                                                <?php
+                                                echo form_label("Garudain Name:","garudian_name");
+                                                echo form_dropdown('parent_id', $parent, set_value('parent_id', 0),'class=form-control input-sm');
+                                                ?>
+                                                 
+                                            </div>
                                         </div>
                                         
                                         <div class="form-group" style="margin-left:117px">
@@ -378,18 +385,8 @@
                                         <div class="form-group col-md-3">
                                                 <?php
                                                 echo form_label("Garudain Name:","garudian_name");
-                                                echo form_dropdown('parent_id', $parent, set_value('parent_id', 0));
-                                                /*
-                                                echo "<select name='parent_id' id='parent_id' class='form-control input-sm'>";
-                                                if (count($parent)) 
-                                                    {
-                                                    foreach ($parent as $list) 
-                                                        {
-                                                            echo "<option value='". $list['user_id'] . "'>" . $list['first_name'] . "</option>";
-                                                        }
-                                                    }
-                                                echo "</select>";
-                                                 */  ?>
+                                                echo form_dropdown('parent_id', $parent, set_value('parent_id', 0),'class=form-control input-sm');
+                                                ?>
                                                  
                                             </div>
                                             </div>

@@ -66,6 +66,7 @@ class Student extends CI_Controller {
                 (
                 'first_name'  =>$this->input->post('first_name'),
                 'last_name'  =>$this->input->post('last_name'),
+                'parent_id' =>$this->input->post('parent_id'),
                 'address'  =>$this->input->post('address'),
                 'mobile'  =>$this->input->post('mobile'),
                 'email'  =>$this->input->post('email'),
@@ -104,8 +105,6 @@ class Student extends CI_Controller {
         }  
         else 
         {
-            //$g_name=$this->input->post('gardian_name');
-            //$g_id=$this->student_model->search_guardian_id($g_name);
             $data=array
                 (
                 'first_name'  =>$this->input->post('first_name'),
