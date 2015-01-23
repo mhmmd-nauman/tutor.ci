@@ -81,13 +81,20 @@
 							  <span class="dtxt">Students</span>
 						  </div>
 						  </a></li>	
-						<li <?php if( $this->uri->segment(2) == 'gardian'){?> style="background-color: white;" <?php }?>>
+						<li <?php if( $this->uri->segment(2) == 'guardian'){?> style="background-color: white;" <?php }?>>
 						  <a href="<?php echo base_url(); ?>admin/guardian">
 						  <div class="dash-ct">
 							  <span class="tutor-icon left"></span>									  
 							  <span class="dtxt">Gardian</span>
 						  </div>
-						  </a></li>	
+						  </a></li>
+                                                  <li <?php if( $this->uri->segment(2) == 'tutor'){?> style="background-color: white;" <?php }?>>
+						  <a href="<?php echo base_url(); ?>admin/tutor">
+						  <div class="dash-ct">
+							  <span class="tutor-icon left"></span>									  
+							  <span class="dtxt">Tutor</span>
+						  </div>
+						  </a></li>
 						<li <?php if( $this->uri->segment(2) == 'classes'){?> style="background-color: white;" <?php }?>>
                                                 <a href="<?php echo base_url();?>admin/classes">
                                                 <div class="dash-ct">
