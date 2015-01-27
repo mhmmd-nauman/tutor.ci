@@ -110,7 +110,7 @@
                                                 </div>
                                                 </a></li>
                                                 <li class="margbottom20">
-						  <a href="#reports" data-toggle="tab">
+						  <a href="<?php echo base_url();?>admin/weekly_calendar">
 						  <div class="dash-ct">
 							  <span class="bookings-icon left"></span>	
 							  <span class="dtxt">Account Reports</span>

@@ -6,14 +6,14 @@ class Calender_model extends CI_Model
 	{
 		     parent::__construct();
 				$this->conf = array(
-				  'start_day'=>'monday',
+				  //'start_day'=>'monday',
 				  'show_next_prev'=> true,
 				  'next_prev_url'=> base_url(). 'admin/calender/index',
 				);
 				$this->conf['template']='
-				   {table_open}<table border="0" cellpadding="0" cellspacing="0" class="calendar">{/table_open}
+				   {table_open}<table border="1" cellpadding="4" cellspacing="0" class="calendar">{/table_open}
 				
-				   {heading_row_start}<tr>{/heading_row_start}
+				   {heading_row_start}<tr style="background-color:#996">{/heading_row_start}
 				
 				   {heading_previous_cell}<th><a href="{previous_url}">&lt;&lt;</a></th>{/heading_previous_cell}
 				   {heading_title_cell}<th colspan="{colspan}">{heading}</th>{/heading_title_cell}
@@ -29,9 +29,12 @@ class Calender_model extends CI_Model
 				   {cal_cell_start}<td class="day">{/cal_cell_start}
 				
 				   {cal_cell_content}
+				      <div class="col">
 				       <div class="day_num ">{day}</div>
 					   <div class="content">{content}</div>
+					   </div>
 				   {/cal_cell_content}
+				  
 				   
 				   {cal_cell_content_today}
 				       <div class="day_num highlight">{day}</div>
@@ -70,13 +73,15 @@ class Calender_model extends CI_Model
 		   'date' => $date,
 		   'data' => $data,
 		  ));
+		  
 	  }
 	  else
 	  {
 	  $this->db->insert('calendar', array(
 	     'date' => $date,
 		 'data' => $data,
-	  ));	
+	  ));
+	  	
 	  }
 	}
     function generate($year, $month)

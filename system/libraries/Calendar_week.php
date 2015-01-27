@@ -124,14 +124,28 @@ class Calendar_week {
                
                 $tmpHeader = '';
                 $tmpContent = '';
- 
-                for ($i=0;$i<count($this->week_days);$i++){
+
+              for ($i=0;$i<count($this->week_days);$i++){
                         if ( (date('l', $this->week_days[$i])=='Saturday') || (date('l', $this->week_days[$i])=='Sunday') ){
                                 $tmpHeader .= '<td>'.$days[date('w', $this->week_days[$i])].' '.date('d', $this->week_days[$i]).' ' . $months[date('n', $this->week_days[$i])-1] .'</td>';
                                 $tmpContent .= '<td><div class="container" style="background: #ccc;"></div></td>';                             
                         } else {
-                                $tmpHeader .= '<td>'.$days[date('w', $this->week_days[$i])].' '.date('d', $this->week_days[$i]).' ' . $months[date('n', $this->week_days[$i])-1] .'</td>';
-                                $tmpContent .= '<td><div class="container">'.$data[$this->week_days[$i]].'</div></td>';
+                                $tmpHeader .= '<td>'
+								 . '<table border=1>'
+                                        . '<tr>'
+                                        . '<td>'.$days[date('w', $this->week_days[$i])].' '.date('d', $this->week_days[$i]).' ' . $months[date('n', $this->week_days[$i])-1] .''
+                                        . '</td>'
+                                        . '</tr>';
+                                        for($j=1;$j<=10;$j++){
+                                          $tmpHeader .= '<tr>'
+                                                  . '<td>'
+                                                  . $j 
+                                                  . '</td>'
+                                                  . '</tr>';  
+												         }
+                                       $tmpHeader .=  '</table>'
+                                        . '</td>';
+                               // $tmpContent .= '<td><div class="container">'.$data[$this->week_days[$i]].'</div></td>';
                         }
                 }
                
@@ -140,7 +154,7 @@ class Calendar_week {
                
                 $template = '
                                         <span id="displayCalendarBefore">
-                                                <a href="' . site_url($this->url . date('Y',$before).'/'.date('m',$before).'/'.date('d',$before)) . '">before</a>
+                                                <a href="' . base_url($this->url . date('Y',$before).'/'.date('m',$before).'/'.date('d',$before)) . '">before </a>
                                         </span>
                                         <span id="calendar">
                                                 <table>
@@ -149,7 +163,7 @@ class Calendar_week {
                                                 </table>
                                         </span>
                                         <span id="displayCalendarAfter">
-                                                <a href="' . site_url($this->url . date('Y',$after).'/'.date('m',$after).'/'.date('d',$after)) . '">after</a>
+                                                <a href="' . base_url($this->url . date('Y',$after).'/'.date('m',$after).'/'.date('d',$after)) . '">after</a>
                                         </span>';
                 return $template ;
         }      
