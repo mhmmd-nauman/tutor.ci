@@ -57,22 +57,35 @@ class Login extends CI_Controller {
         $login['status'] = '1';
         if ($login['status'] == 1) {
             $result = $this->admin->isAdmin($login);
-            if (count($result) != 0) {
+            if (count($result) != 0)
+                {
+                    $this->session->set_userdata(array(
+                        'sess_ci_admin_iadminid' => $result['0']->user_id,
+                        'sess_ci_admin_vName' => $result['0']->first_name,
+                        'sess_ci_admin_vEmailaddress' => $result['0']->email,
+                        'sess_ci_admin_vrole_type' => $result['0']->role_type,
+                        'sess_ci_admin_role' => 1,
+                        'sess_ci_admin_lock' => false,
+                        'sess_ci_admin_msg' => " Login Successfully. ",
+                        'sess_ci_admin_msg_type' => 'success',
+                        'sess_ci_admin_islogged' => true
+                    ));
+                }
+                if ($this->session->userdata('sess_ci_admin_vrole_type') == 'ADMIN') 
+                    {
+                        redirect("admin/dashboard");
+                    }
+                if ($this->session->userdata('sess_ci_admin_vrole_type') == 'TUTOR') 
+                    {
+                        redirect("tutor/dashboard");
+                    }
+                if ($this->session->userdata('sess_ci_admin_vrole_type') == 'PARENT-GUARDIAN') 
+                {
+                        redirect("guardian/dashboard");
+                }
                 
-                $this->session->set_userdata(array(
-                    'sess_ci_admin_iadminid' => $result['0']->user_id,
-                    'sess_ci_admin_vName' => $result['0']->first_name,
-                    'sess_ci_admin_vEmailaddress' => $result['0']->email,
-                    'sess_ci_admin_role' => 1,
-                    'sess_ci_admin_lock' => false,
-                    'sess_ci_admin_msg' => " Login Successfully. ",
-                    'sess_ci_admin_msg_type' => 'success',
-                    'sess_ci_admin_islogged' => true
-                ));
-
-                redirect("admin/dashboard");
                // $data['segment'] = $this->uri->segment(1);
-            } else {
+             else {
                 $this->session->set_userdata(array(
                     'sess_ci_admin_msg' => "Invalid Login. ",
                     'sess_ci_admin_msg_type' => 'error',

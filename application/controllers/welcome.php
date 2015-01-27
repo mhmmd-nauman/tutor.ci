@@ -19,7 +19,31 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('layout/admin_header_internal');
+                //$this->load->view('front_view/home_page');
+                //$this->load->view('layout/admin_footer');
+                $this->load->dbutil();
+
+                $query = $this->db->query("SELECT * FROM pto_users");
+                $prefs = array(
+                'tables'      => array('pto_users'),  // Array of tables to backup.
+                'ignore'      => array(),           // List of tables to omit from the backup
+                'format'      => 'xlsx',             // gzip, zip, txt
+                'filename'    => 'mybackup.xlsx',    // File name - NEEDED ONLY WITH ZIP FILES
+                'add_drop'    => TRUE,              // Whether to add DROP TABLE statements to backup file
+                'add_insert'  => TRUE,              // Whether to add INSERT data to backup file
+                'newline'     => "\n"               // Newline character used in backup file
+              );
+
+                $this->dbutil->backup($prefs); 
+                /*$config = array (
+                                  'root'    => 'c://',
+                                  'element' => 'element',
+                                  'newline' => "\n",
+                                  'tab'    => "\t"
+                                );
+
+                echo $this->dbutil->xml_from_result($query, $config); */ 
 	}
 }
 
