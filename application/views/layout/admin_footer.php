@@ -1,4 +1,4 @@
-<!-- Javascript  -->
+       <!-- Javascript  -->
 		<script src="<?php echo base_url(); ?>assets/js/initialize-loginpage.js"></script>
 		<script src="<?php echo base_url(); ?>assets/js/jquery.easing.js"></script>
 		<!-- Load Animo -->

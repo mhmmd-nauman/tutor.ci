@@ -11,8 +11,9 @@
     <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet" media="screen">
     <link href="<?php echo base_url(); ?>assets/css/dashboard.css" rel="stylesheet" media="screen">
     <link href="<?php echo base_url(); ?>css/pto-admin.css" rel="stylesheet" media="screen">
-
+ 
     <!-- Carousel -->
+    
 	<link href="<?php echo base_url(); ?>examples/carousel/carousel.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,6 +38,7 @@
     <script src="<?php echo base_url(); ?>assets/js/jquery.v2.0.3.js"></script>
 	
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easy-pie-chart.js"></script>
+    
 
 	
 	
