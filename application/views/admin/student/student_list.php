@@ -284,51 +284,43 @@
         <?php } ?>
 	<!-- //user Update popup -->
         
-        <!-- user Delete  -->
-        <?php
-                foreach ($view as $row)
-                { 
-                    $id=$row->student_id;
-        ?>
-	<div class="modal fade" id="stu_delete<?php echo $id;?>"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-					<br>
-					<div class="avatar"></div>
-					<div class="userInfo">
-						<div class="center">
-                                                    <?php
-                                                        
-                                                        echo form_open("admin/student/delete_student");
-                                                    ?>
-                                                    <input type="hidden" name="s_id" value="<?php echo $id;?>" id="s_id">
-                                                    <h4 class="modal-title" id="myModalLabel">R u Sure You Want Delete??</h4><br>
-                                                    <div class="row" style="margin-left:50px">
-                                                            <input type="submit" name="delete_record" value="Yes" class="btn btn-primary "/>&nbsp;&nbsp;
-                                                            <input type="submit" name="cancel_record" value="NO" class="btn btn-primary"/>
-                                                        </div>
-						</div>
-					</div>
-					<?php echo form_close();?><div class="clearfix"></div>
-				</div>
-				
-			</div>
-		</div>
-					
-				<!--<div class="modal-footer"></div>-->
-		</div><?php } ?>
-	<!-- //user Delete popup -->
+<!-- user Delete  -->
+<?php
+        foreach ($view as $row)
+        { 
+            $id=$row->student_id;
+?>
+<div class="modal fade" id="stu_delete<?php echo $id;?>"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                                <br>
+                                <div class="avatar"></div>
+                                <div class="userInfo">
+                                        <div class="center">
+                                            <?php
+
+                                                echo form_open("admin/student/delete_student");
+                                            ?>
+                                            <input type="hidden" name="s_id" value="<?php echo $id;?>" id="s_id">
+                                            <h4 class="modal-title" id="myModalLabel">R u Sure You Want Delete??</h4><br>
+                                            <div class="row" style="margin-left:50px">
+                                                    <input type="submit" name="delete_record" value="Yes" class="btn btn-primary "/>&nbsp;&nbsp;
+                                                    <input type="submit" name="cancel_record" value="NO" class="btn btn-primary"/>
+                                                </div>
+                                        </div>
+                                </div>
+                                <?php echo form_close();?><div class="clearfix"></div>
+                        </div>
+
+                </div>
+        </div>
+
+                        <!--<div class="modal-footer"></div>-->
+        </div><?php } ?>
+<!-- //user Delete popup -->
 	<!-- //user Add popup -->
-<script>
-            $(function() {
-                <?php
-                    if ($this->session->userdata('sess_add_record_type') == 'error') { ?>
-                    //$('#stu_add').modal('show');
-                    });
-                    <?php } ?>
-</script>
 
 <div class="modal fade" id="stu_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">

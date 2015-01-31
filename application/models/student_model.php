@@ -23,6 +23,15 @@ Class student_model extends CI_Model
         
         return $query->result();
     }
+    function get_student($id) {
+        
+        $this->db->from('pto_students');
+        $this->db->where('parent_id',$id);
+	$this->db->order_by("first_name", "desc");
+        $query = $this->db->get(); 
+        
+        return $query->result();
+    }
     
     function view_student_record()
     {

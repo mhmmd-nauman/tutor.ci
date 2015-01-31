@@ -11,16 +11,6 @@ class Student extends CI_Controller {
         $this->load->model('gardian_model');
     }
 
-    function index() {
-        
-        $data['view'] = $this->student_model->get_student_list();
-        $data['parent'] = $this->gardian_model->get_gardian_id();
-        
-        $this->load->view('layout/admin_header_internal');
-        $this->load->view('admin/student/student_list',$data);
-        $this->load->view('layout/admin_footer_internal');
-    }
-
     public function insert_dummy_student(){
         // a hard code login code
         $data['parent_id'] = "1";
@@ -66,7 +56,6 @@ class Student extends CI_Controller {
                 (
                 'first_name'  =>$this->input->post('first_name'),
                 'last_name'  =>$this->input->post('last_name'),
-                'parent_id' =>$this->input->post('parent_id'),
                 'address'  =>$this->input->post('address'),
                 'mobile'  =>$this->input->post('mobile'),
                 'email'  =>$this->input->post('email'),
@@ -76,7 +65,7 @@ class Student extends CI_Controller {
                 'sess_msg' => " Record Successfully Updated",
                 'sess_msg_type' => 'success'
             ));
-            redirect("admin/student");
+            redirect("guardian/dashboard");
             
         }   
     }
@@ -109,7 +98,7 @@ class Student extends CI_Controller {
                 (
                 'first_name'  =>$this->input->post('first_name'),
                 'last_name'  =>$this->input->post('last_name'),
-                'parent_id' =>$this->input->post('parent_id'),
+                'parent_id' =>$this->session->userdata('sess_ci_admin_iadminid'),
                 'address'  =>$this->input->post('address'),
                 'mobile'  =>$this->input->post('mobile'),
                 'email'  =>$this->input->post('email'),
@@ -129,7 +118,7 @@ class Student extends CI_Controller {
                 'sess_msg' => "New Record Successfully Inserted",
                 'sess_msg_type' => 'success'
             ));
-            redirect("admin/student"); 
+            redirect("guardian/dashboard"); 
         }   
     }
     public function  delete_student()
@@ -143,7 +132,7 @@ class Student extends CI_Controller {
             'sess_msg' => "Record Successfully Deleted",
             'sess_msg_type' => 'success'
         ));
-        redirect("admin/student");
+        redirect("guardian/dashboard");
     }   
 
     
