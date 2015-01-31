@@ -9,7 +9,7 @@ $(document).ready(function() {
       allowCalEventOverlap : true,
       overlapEventsSeparate: true,
       firstDayOfWeek : 1,
-      businessHours :{start: 8, end: 18, limitDisplay: true },
+      businessHours :{start: 1, end: 24, limitDisplay: true },
       daysToShow : 7,
       height : function($calendar) {
          return $(window).height() - $("h1").outerHeight() - 1;
@@ -30,13 +30,13 @@ $(document).ready(function() {
          return calEvent.readOnly != true;
       },
       eventNew : function(calEvent, $event) {
-         var $dialogContent = $("#event_edit_container");
+		 var $dialogContent = $("#event_edit_container");
          resetForm($dialogContent);
          var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
          var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
          var titleField = $dialogContent.find("input[name='title']");
          var bodyField = $dialogContent.find("textarea[name='body']");
-
+		 
 
          $dialogContent.dialog({
             modal: true,
@@ -48,13 +48,30 @@ $(document).ready(function() {
             },
             buttons: {
                save : function() {
-                  calEvent.id = id;
-                  id++;
+				  calEvent.id = id;
+				  id++;
                   calEvent.start = new Date(startField.val());
                   calEvent.end = new Date(endField.val());
                   calEvent.title = titleField.val();
                   calEvent.body = bodyField.val();
-
+                  if(titleField = null)
+			{
+         $.ajax({
+					  url: window.location,
+					  type: 'POST',
+					  data: {
+						  start_time: startField,
+						  end_time: endField,
+						  title: titleField,
+						  description: bodyField,
+						 
+						    },
+							success: function(msg)
+							{
+								//location.reload();
+							} 
+					});
+			}
                   $calendar.weekCalendar("removeUnsavedEvents");
                   $calendar.weekCalendar("updateEvent", calEvent);
                   $dialogContent.dialog("close");
@@ -80,6 +97,7 @@ $(document).ready(function() {
          }
 
          var $dialogContent = $("#event_edit_container");
+		
          resetForm($dialogContent);
          var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
          var endField = $dialogContent.find("select[name='end']").val(calEvent.end);

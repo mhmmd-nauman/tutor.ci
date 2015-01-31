@@ -1,10 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-</head>
-
-<body>
-</body>
-</html>
+<?php 
+class Weekly_model extends CI_Model
+{
+	function add_weekly_calendar_data($start_time, $end_time, $title, $description)
+	{
+	  if($this->db->select('start_time')->from('weekly_calendar')
+	  ->where('start_time', $start_time)->count_all_results())
+	  {
+		  $this->db->where('start_time', $start_time)
+		   ->update('weekly_calendar', array(
+		   'start_time'  => $start_time,
+		   'end_time'    => $end_time,
+		   'title'       => $title,
+		   'description' => $description,
+		  ));
+		  
+	  }
+	  else
+	  {
+	  $this->db->insert('weekly_calendar', array(
+	       'start_time'  => $start_time,
+		   'end_time'    => $end_time,
+		   'title'       => $title,
+		   'description' => $description,
+	  ));
+	  	
+	  }
+	}
+}
+?>

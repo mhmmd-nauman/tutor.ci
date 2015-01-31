@@ -1,44 +1,32 @@
  <?php 
 
 class Calender extends CI_Controller {
-	public function index()
-	{
-	  $prefs = array (
-	           'show_next_prev'  => TRUE,
-               'next_prev_url'   => base_url(). 'admin/calender/index',
-              // 'start_day'    => 'saturday',
-               'week_type'   => 'long',
-               'day_type'     => 'short'
-             );
-
-$this->load->library('calendar_week', $prefs);
-
-echo $this->calendar_week->generate();	
+	
+	
+	public function index($year = null, $month = null)
+	{  
+            if(!$year)
+            {
+                    $year=date('y');
+            }
+             if(!$month)
+            {
+                    $month=date('m');
+            }
+            $this->load->model('Calender_model'); 
+            if($day=$this->input->post('day'))
+            {
+                $this->Calender_model->add_calendar_data(
+                    "$year-$month-$day",
+                    $this->input->post('data')
+                   );	  
+            }  
+            $data['cal']=$this->Calender_model->generate($year, $month);
+			 $this->load->view('layout/admin_header_internal');
+            $this->load->view('admin/calender', $data);
+			$this->load->view('layout/admin_footer');
+		
 	}
-   
-	//
-//	public function index($year = null, $month = null)
-//	{  
-//            if(!$year)
-//            {
-//                    $year=date('y');
-//            }
-//             if(!$month)
-//            {
-//                    $month=date('m');
-//            }
-//            $this->load->model('Calender_model'); 
-//            if($day=$this->input->post('day'))
-//            {
-//                $this->Calender_model->add_calendar_data(
-//                    "$year-$month-$day",
-//                    $this->input->post('data')
-//                   );	  
-//            }  
-//            $data['cal']=$this->Calender_model->generate($year, $month);
-//            $this->load->view('admin/calender', $data);
-//		
-//	}
         
          
 	//
