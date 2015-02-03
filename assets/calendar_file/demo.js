@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
 
+
+
    var $calendar = $('#calendar');
    var id = 10;
 
@@ -9,7 +11,7 @@ $(document).ready(function() {
       allowCalEventOverlap : true,
       overlapEventsSeparate: true,
       firstDayOfWeek : 1,
-      businessHours :{start: 1, end: 24, limitDisplay: true },
+      businessHours :{start:8, end: 18, limitDisplay: true },
       daysToShow : 7,
       height : function($calendar) {
          return $(window).height() - $("h1").outerHeight() - 1;
@@ -36,7 +38,7 @@ $(document).ready(function() {
          var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
          var titleField = $dialogContent.find("input[name='title']");
          var bodyField = $dialogContent.find("textarea[name='body']");
-		 
+		
 
          $dialogContent.dialog({
             modal: true,
@@ -44,34 +46,19 @@ $(document).ready(function() {
             close: function() {
                $dialogContent.dialog("destroy");
                $dialogContent.hide();
+			   
                $('#calendar').weekCalendar("removeUnsavedEvents");
             },
             buttons: {
                save : function() {
+				  add_data();
 				  calEvent.id = id;
 				  id++;
                   calEvent.start = new Date(startField.val());
                   calEvent.end = new Date(endField.val());
                   calEvent.title = titleField.val();
                   calEvent.body = bodyField.val();
-                  if(titleField = null)
-			{
-         $.ajax({
-					  url: window.location,
-					  type: 'POST',
-					  data: {
-						  start_time: startField,
-						  end_time: endField,
-						  title: titleField,
-						  description: bodyField,
-						 
-						    },
-							success: function(msg)
-							{
-								//location.reload();
-							} 
-					});
-			}
+				  
                   $calendar.weekCalendar("removeUnsavedEvents");
                   $calendar.weekCalendar("updateEvent", calEvent);
                   $dialogContent.dialog("close");
@@ -81,6 +68,34 @@ $(document).ready(function() {
                }
             }
          }).show();
+		 function add_data()
+		 {
+			  var startf, endf, title, bodyf;
+			       startf = new Date(startField.val());
+                   endf   = new Date(endField.val());
+                   title  = titleField.val();
+                   bodyf  = bodyField.val();
+				   
+				    if(startf != null)
+			        {
+							$.ajax({
+								  url: window.location,
+								  type: 'POST',
+								  data: {
+										  start_time: startf,
+										  end_time: endf,
+										  title: title,
+										  description: bodyf,
+									 
+										},
+										  success: function(msg)
+										{
+											//location.reload();
+										} 
+								  });
+					}	 
+		 
+		 }
 
          $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
          setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));

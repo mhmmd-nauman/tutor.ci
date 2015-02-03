@@ -120,7 +120,7 @@
 						  </a></li>
                                                   
 						<li>
-						  <a href="#message-box" data-toggle="tab">
+						  <a href="<?php echo base_url();?>admin/subdomain">
 						  <div class="dash-ct">
 							  <span class="newsletter-icon left"></span>	
 							  <span class="dtxt">Messages</span>

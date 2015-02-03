@@ -8,8 +8,8 @@ class Weekly_model extends CI_Model
 	  {
 		  $this->db->where('start_time', $start_time)
 		   ->update('weekly_calendar', array(
-		   'start_time'  => $start_time,
-		   'end_time'    => $end_time,
+		   'start_time'  => date("Y-m-d h:i:s",strtotime($start_time)),
+		   'end_time'    => date("Y-m-d h:i:s",strtotime($end_time)),
 		   'title'       => $title,
 		   'description' => $description,
 		  ));
@@ -19,12 +19,13 @@ class Weekly_model extends CI_Model
 	  {
 	  $this->db->insert('weekly_calendar', array(
 	       'start_time'  => $start_time,
-		   'end_time'    => $end_time,
+		   'end_time'    =>  $end_time,
 		   'title'       => $title,
 		   'description' => $description,
 	  ));
 	  	
 	  }
 	}
+	
 }
 ?>

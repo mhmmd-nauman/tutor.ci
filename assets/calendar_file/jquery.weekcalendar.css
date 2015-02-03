@@ -3,11 +3,13 @@
 .wc-container {
 	font-size: 14px;	
 	font-family: arial, helvetica;
+	width:100%;
 }
 
 .wc-nav {
-	padding: 1em;
-	text-align: right;	
+
+	text-align: right;
+	width:100%;
 }
 
 .wc-nav button {

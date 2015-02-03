@@ -3,13 +3,15 @@
 class Weekly_calendar extends CI_Controller {
    
 	
-	public function index($start_time = '', $start_time  = '', $title  = '', $description  = '')
+	public function index($start_time = '', $end_time  = '', $title  = '', $description  = '')
 	{ 
+	     
+   
 	        $this->load->model('Weekly_model');
             if($start_time=$this->input->post('start_time'))
             {
 				    $this->Weekly_model->add_weekly_calendar_data(
-                    "$start_time-$start_time",
+                    "$start_time-$end_time",
                     $this->input->post('end_time'),
 					$this->input->post('title'),
 					$this->input->post('description')
