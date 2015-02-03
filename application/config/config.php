@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/sir.ci';
+$config['base_url']	= 'http://localhost/tutor';
 //$config['base_url']	= 'http://designsoftstudios.net/tuition-beta/';
 /*
 |--------------------------------------------------------------------------
