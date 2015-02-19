@@ -112,7 +112,7 @@
                                                 </div>
                                                 </a></li>
                                                 <li class="margbottom20">
-						  <a href="<?php echo base_url();?>admin/weekly_calendar">
+						<!--  <a href="<?php echo base_url();?>admin/weekly_calendar">-->
 						  <div class="dash-ct">
 							  <span class="bookings-icon left"></span>	
 							  <span class="dtxt">Account Reports</span>
@@ -120,7 +120,7 @@
 						  </a></li>
                                                   
 						<li>
-						  <a href="<?php echo base_url();?>admin/subdomain">
+						  <a href="#">
 						  <div class="dash-ct">
 							  <span class="newsletter-icon left"></span>	
 							  <span class="dtxt">Messages</span>

@@ -42,52 +42,7 @@
 			</ul>
 		</form>
 	</div>
-	<div class="modal fade" id="new_class_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-                
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                     <div style="color:#09F; margin-left:15px">
-                        <span><h4>Add New Class</h4></span>
-                    </div> 
-					<br>
-                            <input type="hidden" name="class_id" value="" class="form-control input-sm"/>
-                             <div class="form-group col-md-5"  style="margin-left:80px">
-                                <label>Language:</label><input type="text" name="language" value="" class="form-control input-sm"/>
-                             </div>
-                             <div class="form-group col-md-5"  >
-                             <label>Class Title:</label> <input type="text" name="class_title" value="" class="form-control input-sm"/> 
-                             </div>
-                             <div class="form-group col-md-10"  style="margin-left:80px">
-                                <label>Class Description:</label><textarea  name="class_description" class="form-control input-sm"></textarea>
-                             </div>
-                             <div class="form-group col-md-5"  style="margin-left:80px">
-                                 <label>Class Type:</label> 
-                                    <select name='class_method' id='id' class="form-control input-sm">
-                                           <option value="Reading">Reading</option>
-                                           <option value="Speaking">Speaking</option>
-                                     </select>
-                             </div>
-                             <div class="form-group col-md-5">
-                                  <label>Photo:</label> <input type="file" name="image" value="" />
-                             </div>
-                             <div class="form-group col-md-5" >
-                             <input type="submit" name="add" value="Add" class="btn btn-primary "/>&nbsp;<input type="submit" name="cancel_" value="Cancel" class="btn btn-danger" data-dismiss="modal"/>
-                             </div>
-                              <div class="form-group col-md-5" style="margin-top:20px">
-                                
-                             </div>
-                       
-					
-					<div class="clearfix"></div>
-				</div>
-				
-				<!--<div class="modal-footer"></div>-->
-                
-			</div>
-		</div>
-	</div>
+	
 	
 </body>
 </html>
