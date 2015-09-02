@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2015 at 12:44 AM
+-- Generation Time: Sep 02, 2015 at 10:58 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -357,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `pto_users` (
   `last_activity_date` datetime DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `pto_users`
@@ -365,7 +365,7 @@ CREATE TABLE IF NOT EXISTS `pto_users` (
 
 INSERT INTO `pto_users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `role_type`, `security_pin`, `registration_date`, `last_activity_date`, `is_active`) VALUES
 (1, 'Muhammad', 'Nauman', 'test', '5f4dcc3b5aa765d61d8327deb882cf99', 'ADMIN', 'pin', '2014-12-25 11:53:50', '2014-12-25 11:53:50', 1),
-(2, 'Muhammad', 'Nauman', 'mhmmd.nauman@gmail.com', NULL, 'PARENT-GUARDIAN', NULL, NULL, NULL, 0);
+(3, 'Muhammad', 'Nauman', 'mhmmd.nauman@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 'pin', '2015-06-06 10:11:18', '2015-06-06 10:11:18', 1);
 
 --
 -- Constraints for dumped tables
